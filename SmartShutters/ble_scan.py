@@ -2,10 +2,11 @@
 # Uses Bluez for Linux
 #
 # sudo apt-get install bluez python-bluez
-# 
-# Taken from: https://people.csail.mit.edu/albert/bluez-intro/x232.html
-# Taken from: https://people.csail.mit.edu/albert/bluez-intro/c212.html
-
+# https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=193923#p1232385
+# https://www.raspberrypi.org/forums/viewtopic.php?t=197152
+#
+#
+#
 # target MAC Address: 30:AE:A4:25:14:56
 # Need to use gattool BLE to connect
 # sudo gatttool -b 30:AE:A4:25:14:56 -I
