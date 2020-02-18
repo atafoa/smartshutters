@@ -29,14 +29,12 @@ def range(request):
 	# in here we do task of checking all the bluetooth devices nearby
 	#
 	#
-	d ={}
+	d = []
 	bt = Bluetooth()
 	bt.scan()
 	devices = bt.get_available_devices()
-	for x in devices:
-		d[x['name']] = x['mac_address']	
-	msg = json.dumps(d)
-	return HttpResponse(msg)
+	msg = json.dumps(devices)
+	return HttpResponse(msg, content_type="application/json")
 
 
 # this function will send the all the know shutters in the format of name : address from a text file

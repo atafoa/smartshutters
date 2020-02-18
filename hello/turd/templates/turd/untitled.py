@@ -5,7 +5,7 @@ bluetooth.scan()
 f = open("/home/pi/hub-repository/hello/turd/templates/turd/scanResult.txt","w")
 devices = bluetooth.get_available_devices() #list object
 d={}
-#print(devices)
+print(devices)
 for x in devices:
     d[x['name']] = x['mac_address']
     

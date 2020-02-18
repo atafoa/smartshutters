@@ -25,4 +25,5 @@ print("Characteristics discovered:")
 for characteristics_single in characteristics:
     print("UUID: " + str(characteristics_single.uuid))
 print("UUID for writing characteristic is:" + str(characteristics[4].uuid))
-characteristics[4].write(bytes("RED"))
+characteristics[4].write(bytes("PURPLE"))
+device.disconnect()
