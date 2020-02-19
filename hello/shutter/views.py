@@ -20,7 +20,7 @@ def index(request):
 	#scanner = btle.Scanner()
 	#devices = scanner.getDevices()
 	#time.sleep(3)
-	#return render(request,'turd/index.html')
+	#return render(request,'shutter/index.html')
 	#print(devices)
 	return HttpResponse("home")
 # Create your views here.

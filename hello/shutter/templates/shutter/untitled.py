@@ -2,7 +2,7 @@ from bluetool import Bluetooth
 import json
 bluetooth = Bluetooth()
 bluetooth.scan()
-f = open("/home/pi/hub-repository/hello/turd/templates/turd/scanResult.txt","w")
+f = open("/home/pi/hub-repository/hello/shutter/templates/shutter/scanResult.txt","w")
 devices = bluetooth.get_available_devices() #list object
 d={}
 print(devices)
