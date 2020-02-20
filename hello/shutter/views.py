@@ -22,7 +22,11 @@ def index(request):
 	#time.sleep(3)
 	#return render(request,'shutter/index.html')
 	#print(devices)
-	return HttpResponse("home")
+	t = "home"
+	#how you identify the request types
+	t = request.method
+	msg = json.dumps(t)
+	return HttpResponse(msg)
 # Create your views here.
 
 def range(request):
