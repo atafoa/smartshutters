@@ -7,10 +7,10 @@
 #define speed       2       // Speed Range 10 to 2  10 = lowest , 2 = highest
 #define clockwise   0       // Clockwise direction
 #define c_clockwise 1       // Counter clockwise direction
-#define Motor_data1 27      // Inputs for motor controller
-#define Motor_data2 14
-#define Motor_data3 12
-#define Motor_data4 13
+#define Motor_data1 32      // Inputs for motor controller
+#define Motor_data2 33
+#define Motor_data3 25
+#define Motor_data4 28
 #define Degree_Range 180    // Max Number of degrees
 #define ADC_Rotary_input 32 // ADC input from rotary sensor
 #define ADC_Rotary_power 33 // Power / Voltage for rotary sensor

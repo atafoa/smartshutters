@@ -14,7 +14,17 @@
 
 import bluepy.btle as btle
 
+class MyDelegate(btle.DefaultDelegate):
+    
+    def __init__(self):
+        btle.DefaultDelegate.__init__(self)
+        
+    def handleNotification(self,cHandle,data):
+        
+        print(data)
+
 device = btle.Peripheral()
+device.setDelegate(MyDelegate())
 device.connect("30:AE:A4:25:14:56")
 services = device.getServices()
 print("Services discovered: ")
@@ -25,5 +35,10 @@ print("Characteristics discovered:")
 for characteristics_single in characteristics:
     print("UUID: " + str(characteristics_single.uuid))
 print("UUID for writing characteristic is:" + str(characteristics[4].uuid))
-characteristics[4].write(bytes("PURPLE"))
+characteristics[4].write(bytes("180"))
+while True:
+    if device.waitForNotifications(1.0):
+        print("Notification")
+        continue
+print("Waiting")
 device.disconnect()
