@@ -23,5 +23,7 @@ def load_cached_devices():
 
 	return d
 d = load_cached_devices()
+if d['name'] ==oof:
+	print("you got oof")
 print (d)
 
