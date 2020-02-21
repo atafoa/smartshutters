@@ -66,7 +66,7 @@ def devices(request):
 		i+=1
 
 	response = HttpResponse(json.dumps(d))
-	load_cached_devices()
+	#load_cached_devices()
 	#print(response)
 	return response
 
