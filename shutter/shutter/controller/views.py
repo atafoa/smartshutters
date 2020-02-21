@@ -24,7 +24,7 @@ def load_cached_devices():
 known_devices = load_cached_devices()
 
 def add_to_file(d):
-    f = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
+    f = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
     thing = {}
     d = {}
     for name, mac_address in known_devices.items():
