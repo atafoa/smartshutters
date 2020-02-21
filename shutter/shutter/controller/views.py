@@ -58,6 +58,7 @@ def move(request, name, position):
 #this returns the list of known devices on the system
 def devices(request):
 	d = {}
+	print(known_devices)
 	for name, mac_address in known_devices.items():
 		d['name'] = name
 		d['mac_address'] = mac_address
