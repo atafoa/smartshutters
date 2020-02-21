@@ -8,7 +8,8 @@ import os
 def load_cached_devices():
 	d = {}
 	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
-	temp = json.loads('/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json')
+	#oof = json.dumps(thing.readlines())
+	temp = json.loads(thing.readlines())
 	thing.close()
 	i =0
 	while i < len(temp):
