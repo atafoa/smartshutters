@@ -64,7 +64,7 @@ def devices(request):
 		d['name'] = known_devices['name']
 		d['mac_address'] = known_devices['mac_address']
 		i+=1
-
+	print(json.dumps(d))
 	response = HttpResponse(json.dumps(d))
 	#load_cached_devices()
 	#print(response)
