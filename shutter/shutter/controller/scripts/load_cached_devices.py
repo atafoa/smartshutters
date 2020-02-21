@@ -13,6 +13,7 @@ def load_cached_devices():
 	thing.close()
 	name = temp['name']
 	mac = temp['mac_address']
+	print(name,mac)
 	'''
 	for x in temp.items:
             print(x.keys)
