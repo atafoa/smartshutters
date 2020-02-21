@@ -7,14 +7,9 @@ def load_cached_devices():
 	t = {}
 	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
 	temp = json.loads(thing.read())
-	print(temp)
-	#x = temp.values()
-	#print(x)
 	thing.close()
-	print(type(temp))
 	name = temp['name']
 	mac = temp['mac_address']
-	print(name,mac)
 	i =0
 	while i < len(temp):
 		d['name'] = temp['name']
@@ -23,7 +18,5 @@ def load_cached_devices():
 
 	return d
 d = load_cached_devices()
-if d['name'] =='oof':
-	print("you got oof")
 print (d)
 
