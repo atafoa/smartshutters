@@ -58,11 +58,13 @@ def move(request, name, position):
 #this returns the list of known devices on the system
 def devices(request):
 	d = {}
+	i = 0
 	print(known_devices)
-	for name, mac_address in known_devices.items():
-		d['name'] = name
-		d['mac_address'] = mac_address
-	
+	while i < len(known_devices):
+		d['name'] = known_devices['name']
+		d['mac_address'] = known_devices['mac_address']
+		i+=1
+
 	response = HttpResponse(json.dumps(d))
 	load_cached_devices()
 	#print(response)
