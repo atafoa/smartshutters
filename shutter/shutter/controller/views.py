@@ -8,7 +8,7 @@ import os
 def load_cached_devices():
 	d = {}
 	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
-	temp = json.loads(thing.read())
+	temp = json.loads('/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json')
 	thing.close()
 	i =0
 	while i < len(temp):
@@ -58,7 +58,7 @@ def move(request, name, position):
 def devices(request):
 	d = {}
 	i = 0
-	print(known_devices)
+	#print(known_devices)
 	while i < len(known_devices):
 		d['name'] = known_devices['name']
 		d['mac_address'] = known_devices['mac_address']
