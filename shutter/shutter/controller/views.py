@@ -8,6 +8,7 @@ import os
 def load_cached_devices():
 	d = {}
 	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
+	print(type(thing.read()))
 	print(thing.read())
 	#oof = json.dumps(thing.readlines())
 	temp = json.loads(thing.read())
@@ -24,7 +25,7 @@ def load_cached_devices():
 
 known_devices = load_cached_devices()
 
-def add_to_file(d):
+def add_to_file():
     f = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
     thing = {}
     d = {}
@@ -88,7 +89,7 @@ def scan(request):
 def add_device(request, name, mac_address):
 	known_devices[name] = mac_address
 	response = HttpResponse()
-	add_to_file(known_devices)
+	add_to_file()
 	return response
 
 
@@ -97,7 +98,7 @@ def add_device(request, name, mac_address):
 def remove_device(request, name):
 	known_devices.pop(name)
 	response = HttpResponse()
-	add_to_file(known_devices)
+	add_to_file()
 	return response
 
 
@@ -105,7 +106,7 @@ def remove_device(request, name):
 def rename_device(request, old_name, new_name):
 	known_devices[new_name] = known_devices[old_name]
 	known_devices.pop(old_name)
-	add_to_file(know_devices)
+	add_to_file()
 	response = HttpResponse()
 	return response
 
