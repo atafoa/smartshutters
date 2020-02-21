@@ -22,5 +22,5 @@ def load_cached_devices():
 
 	return d
 d = load_cached_devices()
-
+print (d)
 
