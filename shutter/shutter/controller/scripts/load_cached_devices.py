@@ -1,4 +1,3 @@
-
 import json
 import os
 
@@ -15,3 +14,6 @@ def load_cached_devices():
 	for x in temp.items:
             print(x.keys)
 	return d
+d = load_cached_devices()
+
+
