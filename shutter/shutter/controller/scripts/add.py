@@ -1,5 +1,5 @@
 
-known_devices = [{"name": "thing2", "mac_address": "2"},{"name": "thing1", "mac_address": "1"},{"name": "thing3", "mac_address": "3"}]
+known_devices = [{"name": "thing1", "mac_address": "1"},{"name": "thing2", "mac_address": "2"},{"name": "thing3", "mac_address": "3"}]
 def add_to_file():
     f = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
     thing = {}
@@ -10,3 +10,5 @@ def add_to_file():
     f.write(json.dumps(d))
     f.close()
 
+add_to_file()
+print("done\n")
