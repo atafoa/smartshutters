@@ -32,7 +32,7 @@ def add_to_file():
 	    d['name'] = name
 	    d['mac_address'] = mac_address
     f.write(json.dumps(d))
-    f.close()    
+    f.close()  
 
 
 #need to add a function that checks the devices position and loads to a dicitionary
