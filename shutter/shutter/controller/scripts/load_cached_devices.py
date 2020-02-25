@@ -6,7 +6,7 @@ def load_cached_devices():
 	d = {}
 	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
 	t = thing.read()
-	temp = json.dumps(t)
+	temp = json.loads(t)
 	thing.close()
 	#name = temp['name']
 	#mac = temp['mac_address']
