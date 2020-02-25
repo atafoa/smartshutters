@@ -18,8 +18,7 @@ def load_cached_devices():
 		d['name'] = temp['name']
 		d['mac_address'] = temp['mac_address']
 		i+=1
-	'''
-	testing tabs 
+	''' 
 	return d
 d = load_cached_devices()
 print (d)
