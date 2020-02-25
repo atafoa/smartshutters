@@ -15,8 +15,8 @@ def load_cached_devices():
 	#print(type(temp))
 	
 	while i < len(temp):
-		d[0] = temp['name']
-		d[1] = temp['mac_address']
+		d[0] = temp[0]
+		d[1] = temp[1]
 		i+=1
 	 
 	return d
