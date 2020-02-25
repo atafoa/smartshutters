@@ -14,13 +14,13 @@ def load_cached_devices():
 	temp = json.loads(thing.read())
 	thing.close()
 	i =0
+	return d
 '''	while i < len(temp):
 		d['name'] = temp['name']
 		d['mac_address'] = temp['mac_address']
 		i+=1
 '''
 	#return d
-	return d
 
 known_devices = load_cached_devices()
 
