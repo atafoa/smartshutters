@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 import json
 import os
-
+import time
 
 def load_cached_devices():
 	d = {}
@@ -14,8 +14,10 @@ def load_cached_devices():
 	#x = temp.values()
 	#print(x)
 	thing.close()
+	'''
 	for x in temp.items:
             print(x.keys)
+	'''
 	return d
 
 known_devices = load_cached_devices()
@@ -101,7 +103,12 @@ def rename_device(request, old_name, new_name):
 	add_to_file(know_devices)
 	response = HttpResponse()
 	return response
-
+	
+	
+def tt (request):
+	time.sleep(2)
+	os.system("python /home/pi/hub-repository/SmartShutters/ble_scan.py")
+	return HttpResponse("this is a test")
 
 
 

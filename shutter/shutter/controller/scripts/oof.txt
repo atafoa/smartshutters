@@ -1,4 +1,2 @@
-for x in temp:
-            t = temp.values()
-print(t)
-	
+        t = temp.items
+	print(t)

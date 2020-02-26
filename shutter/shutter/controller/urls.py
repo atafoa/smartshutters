@@ -11,4 +11,5 @@ urlpatterns = [
     path('devices/add/<str:name>/<str:mac_address>', views.add_device),
     path('devices/remove/<str:name>', views.remove_device),
     path('devices/rename/<str:old_name>/<str:new_name>', views.rename_device),
+    path ('devices/test',views.tt)
 ]
