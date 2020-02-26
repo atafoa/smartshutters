@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import json
 import os
 import time
+from . import ble_scan
 
 def load_cached_devices():
 	d = {}
@@ -106,9 +107,19 @@ def rename_device(request, old_name, new_name):
 	
 	
 def tt (request):
-	time.sleep(2)
-	os.system("python /home/pi/hub-repository/SmartShutters/ble_scan.py")
-	return HttpResponse("this is a test")
+	#time.sleep(2)
+	#os.system("python /home/pi/hub-repository/SmartShutters/ble_scan.py")
+	list_to_return = list()
+	list_to_return.clear()
+	num_variables_to_notify = 2
+	ble_scan_object = ble_scan.MyDelegate()
+	ble_scan_object.connect("30:AE:A4:25:14:56")
+	position = "180"
+	ble_scan_object.send_command(position)
+	for i in range(num_variables_to_notify):
+		list_to_return.extend(ble_scan_object.check_notifications())	
+	ble_scan_object.disconnect()
+	return HttpResponse(list_to_return)
 
 
 
