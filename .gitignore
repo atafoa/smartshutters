@@ -1,7 +1,7 @@
 # ignore all pyc files
 *.pyc
 
-#Ignoring hidden mac files
+#Ignoring DS_Store
 *.DS_Store
 
 #Ignoring old folder from v1
