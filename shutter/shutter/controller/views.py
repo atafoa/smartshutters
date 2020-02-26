@@ -106,7 +106,7 @@ def rename_device(request, old_name, new_name):
 	return response
 	
 	
-def tt (request):
+def tt (request,name,position):
 	#time.sleep(2)
 	#os.system("python /home/pi/hub-repository/SmartShutters/ble_scan.py")
 	list_to_return = list()
@@ -114,8 +114,8 @@ def tt (request):
 	num_variables_to_notify = 2
 	ble_scan_object = ble_scan.MyDelegate()
 	ble_scan_object.connect("30:AE:A4:25:14:56")
-	position = "180"
-	ble_scan_object.send_command(position)
+	pp = str(position) 
+	ble_scan_object.send_command(pp)
 	for i in range(num_variables_to_notify):
 		list_to_return.extend(ble_scan_object.check_notifications())	
 	ble_scan_object.disconnect()
