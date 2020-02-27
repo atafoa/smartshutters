@@ -1,26 +1,21 @@
 import json
 import os
+import csv
 
 
-def load_cached_devices():
-	d = {}
-	thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
-	t = thing.read()
-	temp = json.loads("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json")
-	thing.close()
-	#name = temp['name']
-	#mac = temp['mac_address']
-	i =0
-	print(temp)
-	#print(type(temp))
-	
-	while i < len(temp):
-		d['name'] = temp[0]
-		d['mac_address'] = temp[1]
-		i+=1
-	 
-	return d
-d = load_cached_devices()
+def load_csv():
+	thing={}
+	fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", "r")
+	csvr = csv.DictReader(fp)
+	for row in csvr:
+		thing[row['name']]= row['mac']
+	return thing
+
+
+
+d = load_csv()
+#d = load_cached_devices()
+print(type(d))
 print (d)
 
 

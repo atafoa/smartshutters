@@ -3,36 +3,29 @@ from django.http import HttpResponse
 
 import json
 import os
+import csv
 
 
 def load_cached_devices():
-	d = {}
-	#thing = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'r+')
-	#print(type(thing.read()))
-	#print(thing.read())
-	#oof = json.dumps(thing.readlines())
-	#temp = json.loads(thing.read())
-	#thing.close()
-	i =0
-	return d
-'''	while i < len(temp):
-		d['name'] = temp['name']
-		d['mac_address'] = temp['mac_address']
-		i+=1
-'''
-	#return d
+	thing={}
+	fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", "r")
+	csvr = csv.DictReader(fp)
+	for row in csvr:
+		thing[row['name']]= row['mac']
+	print(thing)
+	return thing
 
 known_devices = load_cached_devices()
 
 def add_to_file():
-    f = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
-    thing = {}
-    d = {}
+    csv_fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w').close()
+    csv_fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w')
+    feilds = ['name','mac']
+    writer = csv.DictWriter(csv_fp,fieldnames=feilds)
+    writer.writeheader()
     for name, mac_address in known_devices.items():
-	    d['name'] = name
-	    d['mac_address'] = mac_address
-    f.write(json.dumps(d))
-    f.close()  
+    	print(name,mac_address)
+    	writer.writerow({'name':name,'mac':mac_address})
 
 
 #need to add a function that checks the devices position and loads to a dicitionary
@@ -58,18 +51,21 @@ def move(request, name, position):
 
 #this returns the list of known devices on the system
 def devices(request):
+	L = []
 	d = {}
-	i = 0
-	#print(known_devices)
-	while i < len(known_devices):
-		d['name'] = known_devices['name']
-		d['mac_address'] = known_devices['mac_address']
-		i+=1
-	print(json.dumps(d))
-	response = HttpResponse(json.dumps(d))
-	#load_cached_devices()
-	#print(response)
+	i =0
+	for name, mac_address in known_devices.items():
+		d['name'] = name
+		d['mac_address'] = mac_address
+		L.append(dict(d))
+		print(L)
+		print("\n")
+
+	t = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv","r+")
+	tt = t.read()
+	response = HttpResponse(json.dumps(L))
 	return response
+
 
 
 
@@ -89,7 +85,11 @@ def add_device(request, name, mac_address):
 	known_devices[name] = mac_address
 	response = HttpResponse()
 	add_to_file()
-	return response
+	print(type(known_devices))
+	print(known_devices)
+	temp = "added {} with mac of {}"
+	
+	return HttpResponse(temp.format(name,mac_address))
 
 
 

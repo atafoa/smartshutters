@@ -1,14 +1,20 @@
+import json
+import csv
 
-known_devices = {{"name": "thing1", "mac_address": "1"},{"name": "thing2", "mac_address": "2"},{"name": "thing3", "mac_address": "3"}}
-def add_to_file():
-    f = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/known_devices.json",'w+')
-    thing = {}
-    d = {}
+known_devices = {'thing1':'1','thing2':'2', 'thing3':'3'}
+
+
+
+def add_csv():
+    csv_fp = open("knowndevs.csv", mode='w')
+    feilds = ['name','mac']
+    writer = csv.DictWriter(csv_fp,fieldnames=feilds)
+    writer.writeheader()
     for name, mac_address in known_devices.items():
-	    d['name'] = name
-	    d['mac_address'] = mac_address
-    f.write(json.dumps(d))
-    f.close()
-
-add_to_file()
+	print(name,mac_address)
+	writer.writerow({'name':name,'mac':mac_address})
+	
+	
+	
+add_csv()
 print("done\n")
