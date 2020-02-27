@@ -4,8 +4,8 @@ from django.http import HttpResponse
 import json
 import os
 import time
-import csv
 from . import ble_scan
+import csv
 
 def load_cached_devices():
 	thing={}
