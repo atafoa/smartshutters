@@ -10,7 +10,7 @@ import csv
 
 def load_cached_devices():
 	thing={}
-	fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", "r")
+	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", "r")
 	csvr = csv.DictReader(fp)
 	for row in csvr:
 		thing[row['name']]= row['mac']
@@ -20,8 +20,8 @@ def load_cached_devices():
 known_devices = load_cached_devices()
 
 def add_to_file():
-    csv_fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w').close()
-    csv_fp = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w')
+    csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w').close()
+    csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w')
     feilds = ['name','mac']
     writer = csv.DictWriter(csv_fp,fieldnames=feilds)
     writer.writeheader()
@@ -63,8 +63,8 @@ def devices(request):
 		print(L)
 		print("\n")
 
-	t = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv","r+")
-	tt = t.read()
+	#t = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv","r+")
+	#tt = t.read()
 	response = HttpResponse(json.dumps(L))
 	return response
 
