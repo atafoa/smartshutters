@@ -84,6 +84,12 @@ def scan(request):
 	
 # this function adds devices to our list
 def add_device(request, name, mac_address):
+	if check(name) == 0:
+		return HttpResponse("Name taken")
+	if check_mac(mac_address) == 1:
+		return HttpResponse("Device already added")
+	
+	
 	known_devices[name] = mac_address
 	response = HttpResponse()
 	add_to_file()
@@ -97,52 +103,75 @@ def add_device(request, name, mac_address):
 
 # this functions takes out devices that are in the our list
 def remove_device(request, name):
+	if check(name) == 1:
+		return HttpResponse("Not in list")
+		
 	known_devices.pop(name)
-	response = HttpResponse()
+	send = "{} was removed"
+	response = HttpResponse(send.format(name))
 	add_to_file()
 	return response
 
 
 #this function renames devices
 def rename_device(request, old_name, new_name):
+	if check(new_name) == 0:
+		return HttpResponse("name taken")
+
+	if check(old_name) ==1:
+		return HttpResponse("device not found") 
+
 	known_devices[new_name] = known_devices[old_name]
 	known_devices.pop(old_name)
 	add_to_file()
-	response = HttpResponse()
+	send = "{} renamed to {}"
+	response = HttpResponse(send.format(old_name,new_name))
 	return response
 	
 	
 def tt (request,name,position):
-	#time.sleep(2)
-	#os.system("python /home/pi/hub-repository/SmartShutters/ble_scan.py")
+	if check(name) == 1:
+		return HttpResponse("this is not a known device")
+	if position > 180:
+		return HttpResponse("too high")
+	if position <= 0:
+		return HttpResponse("negative")
+
+
+	#time.sleep(0.5)
 	list_to_return = []
-	list_to_return.clear()
-	print(list_to_return)
 	pp = str(position)
 	num_variables_to_notify = 2
-	ble_scan_object = ble_scan.MyDelegate()
-	ble_scan_object.connect("30:AE:A4:25:14:56") 
-	ble_scan_object.send_command(pp)
-	print(type(ble_scan_object.check_notifications()))
-	#print(ble_scan_object.check_notifications())
+	
+	try:
+		ble_scan_object = ble_scan.MyDelegate()
+		ble_scan_object.connect("30:AE:A4:25:14:56") 
+		ble_scan_object.send_command(pp)
+		list_to_return = list(ble_scan_object.check_notifications())
+		print(list_to_return)
+		ble_scan_object.disconnect()
+		tt = "Moved to {}"
+		return HttpResponse(tt.format(position))
+		
+	except:
+		return HttpResponse("Error")
+	
 	'''
 	for i in range(num_variables_to_notify):
-		list_to_return.insert(i,ble_scan_object.check_notifications())
-		print(i)
-		list_to_return.append(ble_scan_object.check_notifications())
-		print("\n")	
+		list_to_return= list(ble_scan_object.check_notifications())
+		print(list_to_return)
 	'''
-	list_to_return.append(ble_scan_object.check_notifications())
-	if len(list_to_return) > 2:
-		print("the list is greater then 2")
-	
-	ble_scan_object.disconnect()
-	tt = "you moved {} this far {}"
-	#print(ble_scan_object.check_notifications())
-	return HttpResponse(list_to_return)
 
 
 
+def check(name):
+	if name in known_devices:
+		return 0
+	else:
+		return 1
 
-
-
+def check_mac(mac):
+	for x in known_devices.values():
+		if x == mac:
+			return 1
+	return 0
