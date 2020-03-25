@@ -8,6 +8,7 @@ from . import ble_scan
 import csv
 
 
+
 def load_cached_devices():
 	thing={}
 	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", "r")

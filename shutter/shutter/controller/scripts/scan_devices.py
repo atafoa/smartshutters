@@ -13,3 +13,4 @@ f = open('/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_result
 f = open('/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_results.json', 'w+')
 f.write(json.dumps(devices))
 f.close()
+print(devices)
