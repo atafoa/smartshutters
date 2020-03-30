@@ -11,6 +11,10 @@ advertise_service(server_sock,"Sample Server",service_id = uuid, service_classes
 print("Waitingfor connection from RFCOMM Channel %d" % port)
 client_sock,client_info = server_sock.accept()
 print("Accepted connection from",client_info)
+
+
+DO THIS FIRST sudo hciconfig hci0 piscan
+
 '''
 
 

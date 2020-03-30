@@ -78,7 +78,8 @@ def scan(request):
 	f = open('/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_results.json', 'r')
 	scanned_devices = json.loads(f.read())
 	
-	response = HttpResponse(scanned_devices)
+	response = HttpResponse(json.dumps(scanned_devices))
+	#response = HttpResponse(/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_results.json)
 	return response
 	
 	
