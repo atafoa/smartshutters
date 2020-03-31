@@ -36,9 +36,11 @@ for characteristics_single in characteristics:
     print("UUID: " + str(characteristics_single.uuid))
 print("UUID for writing characteristic is:" + str(characteristics[4].uuid))
 characteristics[4].write(bytes("180"))
+"""
 while True:
     if device.waitForNotifications(1.0):
         print("Notification")
         continue
+"""
 print("Waiting")
 device.disconnect()
