@@ -16,7 +16,7 @@ print(rooms)
 
 #this is how you add to a room
 rooms[room][name] = mac
-print(room[room])
+print(rooms[room])
 
 #this is how you change the name of shutter in a certain room
 rooms[room]["new_name"] = rooms[room][name]
