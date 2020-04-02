@@ -20,6 +20,14 @@ def load_cached_devices():
 
 known_devices = load_cached_devices()
 
+def load_rooms():
+	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","r")
+	thing = json.load(fp)
+	print(thing)
+	return thing
+
+rooms = load_rooms()
+
 def add_to_file():
     csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w').close()
     csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w')
@@ -30,6 +38,12 @@ def add_to_file():
     	print(name,mac_address)
     	writer.writerow({'name':name,'mac':mac_address})
 
+
+def add_room_to_file():
+	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","w").close()
+	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","w")
+	fp.write(json.dumps(rooms))
+	fp.close()
 
 #need to add a function that checks the devices position and loads to a dicitionary
 def get_position(name):
@@ -79,7 +93,6 @@ def scan(request):
 	scanned_devices = json.loads(f.read())
 	
 	response = HttpResponse(json.dumps(scanned_devices))
-	#response = HttpResponse(/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_results.json)
 	return response
 	
 	
@@ -112,6 +125,11 @@ def remove_device(request, name):
 	send = "{} was removed"
 	response = HttpResponse(send.format(name))
 	add_to_file()
+	for room in rooms:
+		if name in rooms[room]:
+			rooms[room].pop(name)
+	add_room_to_file()
+	
 	return response
 
 
@@ -126,11 +144,67 @@ def rename_device(request, old_name, new_name):
 	known_devices[new_name] = known_devices[old_name]
 	known_devices.pop(old_name)
 	add_to_file()
+	for room in rooms:
+		if old_name in rooms[room]:
+			rooms[room][new_name] = rooms[room][old_name]
+			rooms[room].pop(old_name)
 	send = "{} renamed to {}"
 	response = HttpResponse(send.format(old_name,new_name))
 	return response
 	
 	
+#this function will add devices to a group
+def create_room(request, name):
+	empty = {}
+	if name in rooms:
+		return HttpResponse("Already in rooms")
+	rooms[name] = empty
+	add_room_to_file()
+	return HttpResponse("added "+name+" room")
+	
+
+def list_rooms(request):
+	return HttpResponse(json.dumps(rooms))
+	
+def delete_room(request,room):
+	if room not in rooms:
+		return HttpResponse("not a room")
+	rooms.pop(room)
+	return HttpResponse("removed "+room)
+
+def rename_room(request,old_room,new_room):
+	if old_room not in rooms:
+		return HttpResponse("Not a room")
+	if new_room in rooms:
+		return HttpResponse("Already in room")
+	rooms[new_room] = rooms[old_room]
+	rooms.pop(old_room)
+	return HttpResponse("Success fully renamed room")
+
+def add_to_room(request,room,shutter):
+	if shutter not in known_devices:
+		return HttpResponse("You have to add the shutter first")
+	if room not in rooms:
+		return HttpResponse("You have to create the room first")
+	if shutter in rooms[room]:
+		return HttpResponse("The shutter is already in the room")
+	rooms[room][shutter] = known_devices[shutter]
+	add_room_to_file()
+	return HttpResponse("Added "+shutter+" to room "+room)
+	
+def remove_from_room(request,room,shutter):
+	if shutter not in known_devices:
+		return HttpResponse("Unknown shutter")
+	if room not in rooms:
+		return HttpResponse("Unkown room")
+	if shutter not in rooms[room]:
+		return HttpResponse("Device not in room")
+	rooms[room].pop(shutter)
+	add_room_to_file()
+	return HttpResponse("Device was successfully deleted")
+
+
+#this is just a test url if we need to test any method or function we do it here 
 def tt (request,name,position):
 	if check(name) == 1:
 		return HttpResponse("this is not a known device")
@@ -163,6 +237,67 @@ def tt (request,name,position):
 		list_to_return= list(ble_scan_object.check_notifications())
 		print(list_to_return)
 	'''
+
+
+#controller\devices\schedule\name of shutter or group\position\min,hour,day of week (sunday(0,7)-saturday(6)\day of month\month)
+def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):
+	
+	oof = "python /home/pi/hub-repository/shutter/shutter/controller/scripts/set_time.py {} {} {} {} {} {} {}"
+	send_min = str(minutes)
+	send_hr = str(hour)
+	send_day = str(day_of_week)
+	send_dom = str(DOM)
+	send_month = str(month)
+	
+	if minutes == 666:
+		send_min = "*"
+
+	elif minutes >= 60 or minutes < 0:
+		return HttpResponse("incorrect minutes")
+	
+	if hour == 666:
+		send_hr = "*"
+	
+	elif hour >= 24 or hour < -1:
+		return HttpResponse("incorrect hour")
+	
+	if day_of_week == 666:
+		send_day = "*"
+	
+	elif day_of_week >7 or day_of_week < -1:
+		return HttpResponse("incorrect day of week")
+	
+	if DOM == 666:
+		send_dom = "*"
+	
+	
+	elif DOM >31 or DOM <0:
+		return HttpResponse("incorrect date")
+	
+	if month == 666:
+		send_month = "*"
+		
+	elif month >12 or month <1:
+		return HttpResponse("incorrect month")
+	
+	if group  in known_devices:
+		#oof = "python /home/pi/hub-repository/shutter/shutter/controller/scripts/set_time.py "+known_devices[group]+" "+position
+		os.system(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position))
+		return HttpResponse(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position))
+		
+	#we have to do it for the group now so if they send a room
+	#then we have to set the schedule for each shutter therefore an os command for each shutter 
+	#idk if we can send alot within a few seconds
+	elif group in rooms:
+		
+		return HttpResponse(oof.format(send_min, send_hr,send_day,send_dom,send_month,rooms[group],position))
+	
+	
+	ans = "{} {} {} {} {}"
+	return HttpResponse(ans.format(group,position,minutes,hour,day_of_week))
+
+
+
 
 
 

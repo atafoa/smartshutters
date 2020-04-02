@@ -13,7 +13,7 @@
 # char-write-req 0x002a RED
 
 import bluepy.btle as btle
-
+import sys
 class MyDelegate(btle.DefaultDelegate):
     
     def __init__(self):
