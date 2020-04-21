@@ -170,7 +170,7 @@ def list_rooms(request):
 		for name,mac in dd.items():
 			d['name'] = name
 			d['mac'] = mac
-	l.append(dict(d))
+			l.append(dict(d))
 
 
 	return HttpResponse(json.dumps(l))
