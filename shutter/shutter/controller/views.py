@@ -70,7 +70,6 @@ def move(request, name, position):
 def devices(request):
 	L = []
 	d = {}
-	i =0
 	for name, mac_address in known_devices.items():
 		d['name'] = name
 		d['mac_address'] = mac_address
@@ -164,7 +163,17 @@ def create_room(request, name):
 	
 
 def list_rooms(request):
-	return HttpResponse(json.dumps(rooms))
+	d = {}
+	l = []
+	for e,dd in rooms.items():
+		d['room'] = e
+		for name,mac in dd.items():
+			d['name'] = name
+			d['mac'] = mac
+	l.append(dict(d))
+
+
+	return HttpResponse(json.dumps(l))
 	
 def delete_room(request,room):
 	if room not in rooms:
