@@ -12,6 +12,7 @@ urlpatterns = [
     path('devices/rename/<str:old_name>/<str:new_name>', views.rename_device),
     path('devices/create_group/<str:name>',views.create_room),
     path('devices/list_rooms/',views.list_rooms),
+    path('devices/list_rooms_only/',views.list_rooms_only),
     path('devices/add_to_room/<str:room>/<str:shutter>',views.add_to_room),
     path('devices/remove_room/<str:room>',views.delete_room),
     path('devices/rename_room/<str:old_room>/<str:new_room>',views.rename_room),

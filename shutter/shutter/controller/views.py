@@ -171,9 +171,16 @@ def list_rooms(request):
 			d['name'] = name
 			d['mac'] = mac
 			l.append(dict(d))
-
-
 	return HttpResponse(json.dumps(l))
+
+def list_rooms_only(request):
+	d = {}
+	l = []
+	for e, dd in rooms.items():
+		d['room'] = e
+		l.append(dict(d))
+	return HttpResponse(json.dumps(l))
+
 	
 def delete_room(request,room):
 	if room not in rooms:
