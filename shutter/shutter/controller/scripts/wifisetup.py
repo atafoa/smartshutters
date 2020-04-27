@@ -1,26 +1,8 @@
-
-
-
-
-
-'''
-
-from bluetool import Bluetooth
-import signal
-bluetooth = Bluetooth()
-bluetooth.scan()
-devices = bluetooth.get_available_devices()
-print(devices)
-print(bluetooth.trust("EC:AA:25:34:60:36"))
-print("\n\n\n\n")
-#print(bluetooth.get_devices_to_pair())
-
-print(bluetooth.connect("EC:AA:25:34:60:36"))
-
-print(bluetooth.disconnect("EC:AA:25:34:60:36"))
-'''
-'''
+import sys
 from wifi import Scheme,Cell
+
+ssid = sys.argv[1]
+pwd = sys.argv[2]
 
 target_ssid = 'Cell(ssid=NETGEAR33)'
 target_pwd = "bluepiano174"
@@ -39,4 +21,3 @@ def wifiscan():
 wifiscan()
 		
 	
-'''

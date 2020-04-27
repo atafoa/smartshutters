@@ -16,10 +16,9 @@ print("Accepted connection from",client_info)
 DO THIS FIRST sudo hciconfig hci0 piscan
 
 '''
-
-
-
+import sys
 from bluetooth import *
+
 
 server_sock=BluetoothSocket( RFCOMM )
 server_sock.bind(("",PORT_ANY))
@@ -47,6 +46,9 @@ try:
         data = client_sock.recv(1024)
         if len(data) == 0: break
         print("received [%s]" % data)
+        
+        
+        
 
 # raise an exception if there was any error
 except IOError:
