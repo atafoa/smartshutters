@@ -54,14 +54,14 @@ def get_position(name):
 
 # this returns the position of the shutter
 def position(request, name):
-	response = HttpResponse(name)
+	response = HttpResponse(json.dumps(name))
 	return response
 
 
 
 # this function takes in the name and position then sends an os command to the ble_scan.py file with the mac address and desired position for the motor
 def move(request, name, position):
-	response = HttpResponse(name + ': ' + str(position))
+	response = HttpResponse(json.dumps(name + ': ' + str(position)))
 	return response
 
 
@@ -99,9 +99,9 @@ def scan(request):
 # this function adds devices to our list
 def add_device(request, name, mac_address):
 	if check(name) == 0:
-		return HttpResponse("Name taken")
+		return HttpResponse(json.dumps("Name taken"))
 	if check_mac(mac_address) == 1:
-		return HttpResponse("Device already added")
+		return HttpResponse(json.dumps("Device already added"))
 	
 	
 	known_devices[name] = mac_address
@@ -111,7 +111,7 @@ def add_device(request, name, mac_address):
 	print(known_devices)
 	temp = "added {} with mac of {}"
 	
-	return HttpResponse(temp.format(name,mac_address))
+	return HttpResponse(json.dumps(temp.format(name,mac_address)))
 
 
 
@@ -122,7 +122,7 @@ def remove_device(request, name):
 		
 	known_devices.pop(name)
 	send = "{} was removed"
-	response = HttpResponse(send.format(name))
+	response = HttpResponse(json.dumps(send.format(name)))
 	add_to_file()
 	for room in rooms:
 		if name in rooms[room]:
@@ -148,7 +148,7 @@ def rename_device(request, old_name, new_name):
 			rooms[room][new_name] = rooms[room][old_name]
 			rooms[room].pop(old_name)
 	send = "{} renamed to {}"
-	response = HttpResponse(send.format(old_name,new_name))
+	response = HttpResponse(json.dumps(send.format(old_name,new_name)))
 	return response
 	
 	
@@ -159,7 +159,7 @@ def create_room(request, name):
 		return HttpResponse("Already in rooms")
 	rooms[name] = empty
 	add_room_to_file()
-	return HttpResponse("added "+name+" room")
+	return HttpResponse(json.dumps("added "+name+" room"))
 	
 
 def list_rooms(request):
@@ -194,7 +194,7 @@ def delete_room(request,room):
 	if room not in rooms:
 		return HttpResponse("not a room")
 	rooms.pop(room)
-	return HttpResponse("removed "+room)
+	return HttpResponse(json.dumps("removed "+room))
 
 def rename_room(request,old_room,new_room):
 	if old_room not in rooms:
@@ -203,39 +203,39 @@ def rename_room(request,old_room,new_room):
 		return HttpResponse("Already in room")
 	rooms[new_room] = rooms[old_room]
 	rooms.pop(old_room)
-	return HttpResponse("Success fully renamed room")
+	return HttpResponse(json.dumps("Success fully renamed room"))
 
 def add_to_room(request,room,shutter):
 	if shutter not in known_devices:
-		return HttpResponse("You have to add the shutter first")
+		return HttpResponse(json.dumps("You have to add the shutter first"))
 	if room not in rooms:
-		return HttpResponse("You have to create the room first")
+		return HttpResponse(json.dumps("You have to create the room first"))
 	if shutter in rooms[room]:
-		return HttpResponse("The shutter is already in the room")
+		return HttpResponse(json.dumps("The shutter is already in the room"))
 	rooms[room][shutter] = known_devices[shutter]
 	add_room_to_file()
-	return HttpResponse("Added "+shutter+" to room "+room)
+	return HttpResponse(json.dumps("Added "+shutter+" to room "+room))
 	
 def remove_from_room(request,room,shutter):
 	if shutter not in known_devices:
-		return HttpResponse("Unknown shutter")
+		return HttpResponse(json.dumps("Unknown shutter"))
 	if room not in rooms:
-		return HttpResponse("Unkown room")
+		return HttpResponse(json.dumps("Unkown room"))
 	if shutter not in rooms[room]:
-		return HttpResponse("Device not in room")
+		return HttpResponse(json.dumps("Device not in room"))
 	rooms[room].pop(shutter)
 	add_room_to_file()
-	return HttpResponse("Device was successfully deleted")
+	return HttpResponse(json.dumps("Device was successfully deleted"))
 
 
 #this is just a test url if we need to test any method or function we do it here 
 def tt (request,name,position):
 	if check(name) == 1:
-		return HttpResponse("this is not a known device")
+		return HttpResponse(json.dumps("this is not a known device"))
 	if position > 180:
-		return HttpResponse("too high")
+		return HttpResponse(json.dumps("too high"))
 	if position <= 0:
-		return HttpResponse("negative")
+		return HttpResponse(json.dumps("negative"))
 
 
 	#time.sleep(0.5)
@@ -251,10 +251,10 @@ def tt (request,name,position):
 		print(list_to_return)
 		ble_scan_object.disconnect()
 		tt = "Moved to {}"
-		return HttpResponse(tt.format(position))
+		return HttpResponse(json.dumps(tt.format(position)))
 		
 	except:
-		return HttpResponse("Error")
+		return HttpResponse(json.dumps("Error"))
 	
 	'''
 	for i in range(num_variables_to_notify):
@@ -277,48 +277,48 @@ def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):
 		send_min = "*"
 
 	elif minutes >= 60 or minutes < 0:
-		return HttpResponse("incorrect minutes")
+		return HttpResponse(json.dumps("incorrect minutes"))
 	
 	if hour == 666:
 		send_hr = "*"
 	
 	elif hour >= 24 or hour < -1:
-		return HttpResponse("incorrect hour")
+		return HttpResponse(json.dumps("incorrect hour"))
 	
 	if day_of_week == 666:
 		send_day = "*"
 	
 	elif day_of_week >7 or day_of_week < -1:
-		return HttpResponse("incorrect day of week")
+		return HttpResponse(json.dumps("incorrect day of week"))
 	
 	if DOM == 666:
 		send_dom = "*"
 	
 	
 	elif DOM >31 or DOM <0:
-		return HttpResponse("incorrect date")
+		return HttpResponse(json.dumps("incorrect date"))
 	
 	if month == 666:
 		send_month = "*"
 		
 	elif month >12 or month <1:
-		return HttpResponse("incorrect month")
+		return HttpResponse(json.dumps("incorrect month"))
 	
 	if group  in known_devices:
 		#oof = "python /home/pi/hub-repository/shutter/shutter/controller/scripts/set_time.py "+known_devices[group]+" "+position
 		os.system(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position))
-		return HttpResponse(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position))
+		return HttpResponse(json.dumps(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position)))
 		
 	#we have to do it for the group now so if they send a room
 	#then we have to set the schedule for each shutter therefore an os command for each shutter 
 	#idk if we can send alot within a few seconds
 	elif group in rooms:
 		
-		return HttpResponse(oof.format(send_min, send_hr,send_day,send_dom,send_month,rooms[group],position))
+		return HttpResponse(json.dumps(oof.format(send_min, send_hr,send_day,send_dom,send_month,rooms[group],position)))
 	
 	
 	ans = "{} {} {} {} {}"
-	return HttpResponse(ans.format(group,position,minutes,hour,day_of_week))
+	return HttpResponse(json.dumps(ans.format(group,position,minutes,hour,day_of_week)))
 
 
 
