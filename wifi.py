@@ -9,8 +9,8 @@ f = open("/etc/wpa_supplicant/wpa_supplicant.conf", "a")
 
 quotation = "\""
 ### Input ID and password 
-wifi_id =  quotation + "Kate home" + quotation
-password = quotation + "Quang1292002?" + quotation
+wifi_id =  quotation + "Haris's pc" + quotation
+password = quotation + "turdburger" + quotation
 protocal = "key_mgmt=WPA-PSK"
 
 

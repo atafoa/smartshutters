@@ -4,8 +4,10 @@
 # sudo apt-get install bluez python-bluez
 # https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=193923#p1232385
 # https://www.raspberrypi.org/forums/viewtopic.php?t=197152
-#
-#
+#26
+#25
+#33
+#32
 #
 # target MAC Address: 30:AE:A4:25:14:56
 # Need to use gattool BLE to connect
@@ -34,13 +36,13 @@ characteristics = device.getCharacteristics()
 print("Characteristics discovered:")
 for characteristics_single in characteristics:
     print("UUID: " + str(characteristics_single.uuid))
-print("UUID for writing characteristic is:" + str(characteristics[4].uuid))
-characteristics[4].write(bytes("180"))
-"""
+print("UUID for writing characteristic is:" + str(characteristics[5].uuid))
+characteristics[5].write(bytes("180"))
+
 while True:
     if device.waitForNotifications(1.0):
         print("Notification")
         continue
-"""
+
 print("Waiting")
 device.disconnect()

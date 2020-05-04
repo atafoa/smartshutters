@@ -34,7 +34,7 @@ class MyDelegate(btle.DefaultDelegate):
         print("Services discovered: ")
         print(services)
         characteristics = self.device.getCharacteristics()
-        # for some reason characteristics[4] sends the write to the bluetooth module. Investigate later.
+        # for some reason characteristics[5] sends the write to the bluetooth module. Investigate later.
         print("Characteristics discovered:")
         for characteristics_single in characteristics:
             print("UUID: " + str(characteristics_single.uuid))
@@ -42,7 +42,7 @@ class MyDelegate(btle.DefaultDelegate):
         return characteristics,services
     def send_command(self,position):
         characteristics,services = self.discover_services_and_characteristics()
-        characteristics[4].write(bytes(position,"utf-8"))
+        characteristics[5].write(bytes(position,"utf-8"))
     
     def check_notifications(self):
         if self.device.waitForNotifications(2.0):
