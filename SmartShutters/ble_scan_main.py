@@ -17,6 +17,11 @@
 import bluepy.btle as btle
 import sys
 temp = []
+try:
+    mac = sys.argv[1]
+    command = sys.argv[2]
+except:
+    print("ok")
 class MyDelegate(btle.DefaultDelegate):
     
     def __init__(self):
@@ -43,7 +48,7 @@ print("Characteristics discovered:")
 for characteristics_single in characteristics:
     print("UUID: " + str(characteristics_single.uuid))
 print("UUID for writing characteristic is:" + str(characteristics[5].uuid))
-characteristics[5].write(bytes("Battery\r\n"))
+characteristics[5].write(bytes("c\r\n"))
 i = 0
 while True:
     try:
@@ -57,8 +62,11 @@ while True:
     except:
         break
 
-print(temp[2],temp[3].strip)
-oof = temp[3].strip()
-print(oof)
-characteristics[5].write(bytes("Sleep\r\n"))
-#device.disconnect()
+t = '{} {}'
+oof = temp[2].strip()
+print(t.format(temp[2],oof))
+#characteristics[5].write(bytes("Sleep\r\n"))
+try:
+    device.disconnect()
+except:
+    print("disconnneted")
