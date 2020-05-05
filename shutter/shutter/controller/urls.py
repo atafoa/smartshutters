@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path('<str:name>/position', views.position),
-    path('<str:name>/move/<int:position>', views.move),
     path('devices', views.devices),
     path('devices/scan', views.scan),
     path('devices/add/<str:name>/<str:mac_address>', views.add_device),
@@ -19,5 +18,6 @@ urlpatterns = [
     path('devices/rename_room/<str:old_room>/<str:new_room>',views.rename_room),
     path('devices/remove_from_room/<str:room>/<str:shutter>',views.remove_from_room),
     path('devices/schedule/<str:group>/<str:position>/<int:minutes>/<int:hour>/<int:day_of_week>/<int:DOM>/<int:month>',views.schedule),
-    path('<str:name>/test/<int:position>', views.tt)
+    path('<str:name>/move/<int:position>', views.move),
+    path('Battery/<str:name>',views.battery),
 ]

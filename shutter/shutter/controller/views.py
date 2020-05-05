@@ -45,25 +45,37 @@ def add_room_to_file():
 	fp.write(json.dumps(rooms))
 	fp.close()
 
-#need to add a function that checks the devices position and loads to a dicitionary
-def get_position(name):
-    d = {}
-    return d
-    
 
-
+#
+#
+#
+#
+#
+#
+#
+#
 # this returns the position of the shutter
 def position(request, name):
-	response = HttpResponse(json.dumps(name))
+	if check(name) ==1:
+		return HttpResponse(json.dumps("this is not a known shutter"))
+	try:
+		ble_scan_object = ble_scan.MyDelegate()
+		ble_scan_object.connect(known_devices[name]) 
+		ble_scan_object.send_command("c\r\n")
+		list_to_return = list(ble_scan_object.check_notifications())
+		print(list_to_return)
+		ble_scan_object.disconnect()
+		flag = True
+		msg = list_to_return.copy()
+		ble_scan_object.disconnect()
+	except:
+		print("there was an error")
+		msg= 'Error'
+		ble_scan_object.disconnect()
+		return HttpResponse(json.dumps("Error"))
+	send = msg[2].decode('UTF-8')
+	response = HttpResponse(json.dumps(send))
 	return response
-
-
-
-# this function takes in the name and position then sends an os command to the ble_scan.py file with the mac address and desired position for the motor
-def move(request, name, position):
-	response = HttpResponse(json.dumps(name + ': ' + str(position)))
-	return response
-
 
 
 #this returns the list of known devices on the system
@@ -161,7 +173,7 @@ def create_room(request, name):
 	add_room_to_file()
 	return HttpResponse(json.dumps("added "+name+" room"))
 	
-
+#list all the rooms and their shutters
 def list_rooms(request):
 	d = {}
 	l = []
@@ -173,6 +185,8 @@ def list_rooms(request):
 			l.append(dict(d))
 	return HttpResponse(json.dumps(l))
 
+
+#list only the rooms
 def list_rooms_only(request):
 	d = {}
 	l = []
@@ -181,6 +195,8 @@ def list_rooms_only(request):
 		l.append(dict(d))
 	return HttpResponse(json.dumps(l))
 
+
+#list a specific room's shutters
 def list_room_shutters(request, room):
 	d = {}
 	l = []
@@ -190,12 +206,16 @@ def list_room_shutters(request, room):
 		l.append(dict(d))
 	return HttpResponse(json.dumps(l))
 
+
+#delete a room
 def delete_room(request,room):
 	if room not in rooms:
 		return HttpResponse("not a room")
 	rooms.pop(room)
 	return HttpResponse(json.dumps("removed "+room))
 
+
+#rename a room
 def rename_room(request,old_room,new_room):
 	if old_room not in rooms:
 		return HttpResponse("Not a room")
@@ -205,6 +225,8 @@ def rename_room(request,old_room,new_room):
 	rooms.pop(old_room)
 	return HttpResponse(json.dumps("Success fully renamed room"))
 
+
+#add a shutter to a room
 def add_to_room(request,room,shutter):
 	if shutter not in known_devices:
 		return HttpResponse(json.dumps("You have to add the shutter first"))
@@ -216,6 +238,7 @@ def add_to_room(request,room,shutter):
 	add_room_to_file()
 	return HttpResponse(json.dumps("Added "+shutter+" to room "+room))
 	
+#remove a shutter from the room
 def remove_from_room(request,room,shutter):
 	if shutter not in known_devices:
 		return HttpResponse(json.dumps("Unknown shutter"))
@@ -227,41 +250,75 @@ def remove_from_room(request,room,shutter):
 	add_room_to_file()
 	return HttpResponse(json.dumps("Device was successfully deleted"))
 
-
-#this is just a test url if we need to test any method or function we do it here 
-def tt (request,name,position):
+#this is how we move a shutter
+def move (request,name,position):
 	if check(name) == 1:
 		return HttpResponse(json.dumps("this is not a known device"))
 	if position > 180:
 		return HttpResponse(json.dumps("too high"))
 	if position <= 0:
 		return HttpResponse(json.dumps("negative"))
-
-
 	#time.sleep(0.5)
 	list_to_return = []
 	pp = str(position)
 	num_variables_to_notify = 2
+	ble_scan_object = ble_scan.MyDelegate()
+	flag = False
+	print(known_devices[name])
+	while flag == False:		
+		try:
+			#ble_scan_object.connect("30:AE:A4:25:14:56")
+			ble_scan_object.connect(known_devices[name]) 
+			ble_scan_object.send_command(pp)
+			list_to_return = list(ble_scan_object.check_notifications())
+			print(list_to_return)
+			ble_scan_object.disconnect()
+			tt = "Moved to {}"
+			flag = True
+			return HttpResponse(json.dumps(tt.format(position)))
+		except:
+			tt = "Moved to {}"
+			print("error")
+			return HttpResponse(json.dumps(tt.format(position)))
+
+
+	'''
+	for the raspberry pi 0W we should have this not print an error message but keep looping until it can do it so just make a test file and try it out in there
+	'''
+######################################
+#
+#
+#
+#	BATTERY FUNCTION
+#
+#
+######################################
+
+
+#this function is used ti check the level of the battery
+def battery(request,name):
+	if check(name) == 1:
+		return HttpResponse(json.dumps("Not a known device"))
 	
+	flag = False
+	ble_scan_object = ble_scan.MyDelegate()
 	try:
-		ble_scan_object = ble_scan.MyDelegate()
-		ble_scan_object.connect("30:AE:A4:25:14:56") 
-		ble_scan_object.send_command(pp)
-		list_to_return = list(ble_scan_object.check_notifications())
-		print(list_to_return)
+		ble_scan_object.connect(known_devices[name])
+		ble_scan_object.send_command("Battery\r\n")
+		l = list(ble_scan_object.check_notifications())
 		ble_scan_object.disconnect()
-		tt = "Moved to {}"
-		return HttpResponse(json.dumps(tt.format(position)))
-		
 	except:
 		return HttpResponse(json.dumps("Error"))
 	
-	'''
-	for i in range(num_variables_to_notify):
-		list_to_return= list(ble_scan_object.check_notifications())
-		print(list_to_return)
-	'''
+	msg = l.copy()
+	send = '{} {}'
+	level = msg[2].decode('UTF-8')
+	status = msg[3].strip().decode('UTF-8')
+	response = HttpResponse(json.dumps(send.format(level,status)))
+	return response
+	
 
+	
 
 #controller\devices\schedule\name of shutter or group\position\min,hour,day of week (sunday(0,7)-saturday(6)\day of month\month)
 def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):

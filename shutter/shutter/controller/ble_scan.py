@@ -13,6 +13,7 @@
 # char-write-req 0x002a RED
 
 import bluepy.btle as btle
+import time
 
 class MyDelegate(btle.DefaultDelegate):
     
@@ -45,9 +46,14 @@ class MyDelegate(btle.DefaultDelegate):
         characteristics[5].write(bytes(position,"utf-8"))
     
     def check_notifications(self):
-        if self.device.waitForNotifications(2.0):
+        if self.device.waitForNotifications(1.0):
             print("Notification")
-            return self.list_to_return
+            try:
+                while self.device.waitForNotifications(1.0):
+                    print("note note")
+                    continue
+            finally:
+                return self.list_to_return
     
     def disconnect(self):
         print("Disconnecting ...")
