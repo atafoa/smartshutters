@@ -1,0 +1,40 @@
+\hypertarget{classtask_1_1MyDelegate}{}\section{task.\+My\+Delegate Class Reference}
+\label{classtask_1_1MyDelegate}\index{task.\+My\+Delegate@{task.\+My\+Delegate}}
+
+
+Inheritance diagram for task.\+My\+Delegate\+:
+% FIG 0
+
+
+Collaboration diagram for task.\+My\+Delegate\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classtask_1_1MyDelegate_afbfea6eccbf17390ce1b70225c1dd4c1}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+def \hyperlink{classtask_1_1MyDelegate_aafda1fec35d6d08ebe560b1bafe87bf1}{handle\+Notification} (self, c\+Handle, data)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtask_1_1MyDelegate_afbfea6eccbf17390ce1b70225c1dd4c1}\label{classtask_1_1MyDelegate_afbfea6eccbf17390ce1b70225c1dd4c1}} 
+\index{task\+::\+My\+Delegate@{task\+::\+My\+Delegate}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!task\+::\+My\+Delegate@{task\+::\+My\+Delegate}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def task.\+My\+Delegate.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtask_1_1MyDelegate_aafda1fec35d6d08ebe560b1bafe87bf1}\label{classtask_1_1MyDelegate_aafda1fec35d6d08ebe560b1bafe87bf1}} 
+\index{task\+::\+My\+Delegate@{task\+::\+My\+Delegate}!handle\+Notification@{handle\+Notification}}
+\index{handle\+Notification@{handle\+Notification}!task\+::\+My\+Delegate@{task\+::\+My\+Delegate}}
+\subsubsection{\texorpdfstring{handle\+Notification()}{handleNotification()}}
+{\footnotesize\ttfamily def task.\+My\+Delegate.\+handle\+Notification (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{c\+Handle,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/pi/hub-\/repository/shutter/shutter/controller/scripts/\hyperlink{task_8py}{task.\+py}\end{DoxyCompactItemize}

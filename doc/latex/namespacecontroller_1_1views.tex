@@ -1,0 +1,306 @@
+\hypertarget{namespacecontroller_1_1views}{}\section{controller.\+views Namespace Reference}
+\label{namespacecontroller_1_1views}\index{controller.\+views@{controller.\+views}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}{load\+\_\+cached\+\_\+devices} ()
+\begin{DoxyCompactList}\small\item\em this function loads all the known shutters from a csv file that is in the scripts folder not a url \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}{load\+\_\+rooms} ()
+\begin{DoxyCompactList}\small\item\em This function loads all the rooms(groups) from a json file into the rooms dictionary does not have a url. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a26ce91aeba8c9d300306419ee86b812e}{add\+\_\+to\+\_\+file} ()
+\begin{DoxyCompactList}\small\item\em Add everyrthing from the known\+\_\+devices to the csv file incase the system shuts down. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ab9bc1ef91482004a9fd83274f0d24fc0}{add\+\_\+room\+\_\+to\+\_\+file} ()
+\begin{DoxyCompactList}\small\item\em Add rooms to the json file when rooms are either added or removed and the shutters inside the room. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}{position} (request, name)
+\begin{DoxyCompactList}\small\item\em this returns the position of the shutter \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a2d4dd7e1f8ecc0560922209253920718}{devices} (request)
+\begin{DoxyCompactList}\small\item\em this returns the list of known devices on the system \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ad3c247241bafffa26cf97fab00440668}{scan} (request)
+\begin{DoxyCompactList}\small\item\em this function scans all available devices on the network \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_aff74e13b196d5984c8d2d6185c7b2a52}{add\+\_\+device} (request, name, mac\+\_\+address)
+\begin{DoxyCompactList}\small\item\em this function adds devices to our list \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_af29cad87aefb06dec847a90fbb68bc9b}{remove\+\_\+device} (request, name)
+\begin{DoxyCompactList}\small\item\em this functions takes out devices that are in the our list \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_acddd9a99bf531dce5e43cd6512995c32}{rename\+\_\+device} (request, old\+\_\+name, new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em this function renames devices \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a0a946610cad4aa4fc8684e3f1b16d831}{create\+\_\+room} (request, name)
+\begin{DoxyCompactList}\small\item\em this function will add devices to a group \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a8d219ce23dd0c7ffc9bd11f6be1122a5}{list\+\_\+rooms} (request)
+\begin{DoxyCompactList}\small\item\em list all the rooms and their shutters \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a60eebf620def5afc7e35004a4f34b073}{list\+\_\+rooms\+\_\+only} (request)
+\begin{DoxyCompactList}\small\item\em list only the rooms \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a552bb38779c88d2fd98d5116a7ee952e}{list\+\_\+room\+\_\+shutters} (request, room)
+\begin{DoxyCompactList}\small\item\em list a specific room\textquotesingle{}s shutters \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a82f0cdbd29a35096496d79b7915ac89e}{delete\+\_\+room} (request, room)
+\begin{DoxyCompactList}\small\item\em delete a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a1b7d046b2086952f35b54e84fbce9b05}{rename\+\_\+room} (request, old\+\_\+room, new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em rename a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a4e7163f7f3a8bb5c7600ffd72e0fa6d1}{add\+\_\+to\+\_\+room} (request, room, shutter)
+\begin{DoxyCompactList}\small\item\em add a shutter to a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a10f36bbe2d1b2e394124a6ea11d3c014}{remove\+\_\+from\+\_\+room} (request, room, shutter)
+\begin{DoxyCompactList}\small\item\em remove a shutter from the room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a155af175864fbdf91a8f42e7c7683790}{move} (request, name, \hyperlink{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}{position})
+\begin{DoxyCompactList}\small\item\em this is how we move a shutter \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a81a56f3af5249f251206b7c898f5e99c}{battery} (request, name)
+\begin{DoxyCompactList}\small\item\em this function is used to check the level of the battery \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_aeb01ffa1920fe22255534bb5d3b20648}{schedule} (request, group, \hyperlink{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}{position}, minutes, hour, day\+\_\+of\+\_\+week, D\+OM, month)
+\begin{DoxyCompactList}\small\item\em this is the schedule function but it was never tested not enough time to integrate controller of shutter or group,hour,day of week (sunday(0,7)-\/saturday(6) of month) \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a6a41caa9cb6c4b959968a86d3c899db2}{check} (name)
+\begin{DoxyCompactList}\small\item\em to check if the shutter is already known \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ac98b114197f615cf64579478f0af28c0}{check\+\_\+mac} (mac)
+\begin{DoxyCompactList}\small\item\em to check if the mac address is already known \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecontroller_1_1views_af9e2f21b0adee926bb6d31dc3d5b401d}{known\+\_\+devices} = \hyperlink{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}{load\+\_\+cached\+\_\+devices}()
+\item 
+def \hyperlink{namespacecontroller_1_1views_a05586480fa7fea962dd67235dc66527f}{rooms} = \hyperlink{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}{load\+\_\+rooms}()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacecontroller_1_1views_aff74e13b196d5984c8d2d6185c7b2a52}\label{namespacecontroller_1_1views_aff74e13b196d5984c8d2d6185c7b2a52}} 
+\index{controller\+::views@{controller\+::views}!add\+\_\+device@{add\+\_\+device}}
+\index{add\+\_\+device@{add\+\_\+device}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+device()}{add\_device()}}
+{\footnotesize\ttfamily def controller.\+views.\+add\+\_\+device (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name,  }\item[{}]{mac\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+this function adds devices to our list 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_ab9bc1ef91482004a9fd83274f0d24fc0}\label{namespacecontroller_1_1views_ab9bc1ef91482004a9fd83274f0d24fc0}} 
+\index{controller\+::views@{controller\+::views}!add\+\_\+room\+\_\+to\+\_\+file@{add\+\_\+room\+\_\+to\+\_\+file}}
+\index{add\+\_\+room\+\_\+to\+\_\+file@{add\+\_\+room\+\_\+to\+\_\+file}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+room\+\_\+to\+\_\+file()}{add\_room\_to\_file()}}
+{\footnotesize\ttfamily def controller.\+views.\+add\+\_\+room\+\_\+to\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Add rooms to the json file when rooms are either added or removed and the shutters inside the room. 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a26ce91aeba8c9d300306419ee86b812e}\label{namespacecontroller_1_1views_a26ce91aeba8c9d300306419ee86b812e}} 
+\index{controller\+::views@{controller\+::views}!add\+\_\+to\+\_\+file@{add\+\_\+to\+\_\+file}}
+\index{add\+\_\+to\+\_\+file@{add\+\_\+to\+\_\+file}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+to\+\_\+file()}{add\_to\_file()}}
+{\footnotesize\ttfamily def controller.\+views.\+add\+\_\+to\+\_\+file (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Add everyrthing from the known\+\_\+devices to the csv file incase the system shuts down. 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a4e7163f7f3a8bb5c7600ffd72e0fa6d1}\label{namespacecontroller_1_1views_a4e7163f7f3a8bb5c7600ffd72e0fa6d1}} 
+\index{controller\+::views@{controller\+::views}!add\+\_\+to\+\_\+room@{add\+\_\+to\+\_\+room}}
+\index{add\+\_\+to\+\_\+room@{add\+\_\+to\+\_\+room}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{add\+\_\+to\+\_\+room()}{add\_to\_room()}}
+{\footnotesize\ttfamily def controller.\+views.\+add\+\_\+to\+\_\+room (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{room,  }\item[{}]{shutter }\end{DoxyParamCaption})}
+
+
+
+add a shutter to a room 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a81a56f3af5249f251206b7c898f5e99c}\label{namespacecontroller_1_1views_a81a56f3af5249f251206b7c898f5e99c}} 
+\index{controller\+::views@{controller\+::views}!battery@{battery}}
+\index{battery@{battery}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{battery()}{battery()}}
+{\footnotesize\ttfamily def controller.\+views.\+battery (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+this function is used to check the level of the battery 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a6a41caa9cb6c4b959968a86d3c899db2}\label{namespacecontroller_1_1views_a6a41caa9cb6c4b959968a86d3c899db2}} 
+\index{controller\+::views@{controller\+::views}!check@{check}}
+\index{check@{check}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily def controller.\+views.\+check (\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+to check if the shutter is already known 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_ac98b114197f615cf64579478f0af28c0}\label{namespacecontroller_1_1views_ac98b114197f615cf64579478f0af28c0}} 
+\index{controller\+::views@{controller\+::views}!check\+\_\+mac@{check\+\_\+mac}}
+\index{check\+\_\+mac@{check\+\_\+mac}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{check\+\_\+mac()}{check\_mac()}}
+{\footnotesize\ttfamily def controller.\+views.\+check\+\_\+mac (\begin{DoxyParamCaption}\item[{}]{mac }\end{DoxyParamCaption})}
+
+
+
+to check if the mac address is already known 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a0a946610cad4aa4fc8684e3f1b16d831}\label{namespacecontroller_1_1views_a0a946610cad4aa4fc8684e3f1b16d831}} 
+\index{controller\+::views@{controller\+::views}!create\+\_\+room@{create\+\_\+room}}
+\index{create\+\_\+room@{create\+\_\+room}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{create\+\_\+room()}{create\_room()}}
+{\footnotesize\ttfamily def controller.\+views.\+create\+\_\+room (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+this function will add devices to a group 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a82f0cdbd29a35096496d79b7915ac89e}\label{namespacecontroller_1_1views_a82f0cdbd29a35096496d79b7915ac89e}} 
+\index{controller\+::views@{controller\+::views}!delete\+\_\+room@{delete\+\_\+room}}
+\index{delete\+\_\+room@{delete\+\_\+room}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{delete\+\_\+room()}{delete\_room()}}
+{\footnotesize\ttfamily def controller.\+views.\+delete\+\_\+room (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{room }\end{DoxyParamCaption})}
+
+
+
+delete a room 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a2d4dd7e1f8ecc0560922209253920718}\label{namespacecontroller_1_1views_a2d4dd7e1f8ecc0560922209253920718}} 
+\index{controller\+::views@{controller\+::views}!devices@{devices}}
+\index{devices@{devices}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{devices()}{devices()}}
+{\footnotesize\ttfamily def controller.\+views.\+devices (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+this returns the list of known devices on the system 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a552bb38779c88d2fd98d5116a7ee952e}\label{namespacecontroller_1_1views_a552bb38779c88d2fd98d5116a7ee952e}} 
+\index{controller\+::views@{controller\+::views}!list\+\_\+room\+\_\+shutters@{list\+\_\+room\+\_\+shutters}}
+\index{list\+\_\+room\+\_\+shutters@{list\+\_\+room\+\_\+shutters}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{list\+\_\+room\+\_\+shutters()}{list\_room\_shutters()}}
+{\footnotesize\ttfamily def controller.\+views.\+list\+\_\+room\+\_\+shutters (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{room }\end{DoxyParamCaption})}
+
+
+
+list a specific room\textquotesingle{}s shutters 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a8d219ce23dd0c7ffc9bd11f6be1122a5}\label{namespacecontroller_1_1views_a8d219ce23dd0c7ffc9bd11f6be1122a5}} 
+\index{controller\+::views@{controller\+::views}!list\+\_\+rooms@{list\+\_\+rooms}}
+\index{list\+\_\+rooms@{list\+\_\+rooms}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{list\+\_\+rooms()}{list\_rooms()}}
+{\footnotesize\ttfamily def controller.\+views.\+list\+\_\+rooms (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+list all the rooms and their shutters 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a60eebf620def5afc7e35004a4f34b073}\label{namespacecontroller_1_1views_a60eebf620def5afc7e35004a4f34b073}} 
+\index{controller\+::views@{controller\+::views}!list\+\_\+rooms\+\_\+only@{list\+\_\+rooms\+\_\+only}}
+\index{list\+\_\+rooms\+\_\+only@{list\+\_\+rooms\+\_\+only}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{list\+\_\+rooms\+\_\+only()}{list\_rooms\_only()}}
+{\footnotesize\ttfamily def controller.\+views.\+list\+\_\+rooms\+\_\+only (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+list only the rooms 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}\label{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}} 
+\index{controller\+::views@{controller\+::views}!load\+\_\+cached\+\_\+devices@{load\+\_\+cached\+\_\+devices}}
+\index{load\+\_\+cached\+\_\+devices@{load\+\_\+cached\+\_\+devices}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{load\+\_\+cached\+\_\+devices()}{load\_cached\_devices()}}
+{\footnotesize\ttfamily def controller.\+views.\+load\+\_\+cached\+\_\+devices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+this function loads all the known shutters from a csv file that is in the scripts folder not a url 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}\label{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}} 
+\index{controller\+::views@{controller\+::views}!load\+\_\+rooms@{load\+\_\+rooms}}
+\index{load\+\_\+rooms@{load\+\_\+rooms}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{load\+\_\+rooms()}{load\_rooms()}}
+{\footnotesize\ttfamily def controller.\+views.\+load\+\_\+rooms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function loads all the rooms(groups) from a json file into the rooms dictionary does not have a url. 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a155af175864fbdf91a8f42e7c7683790}\label{namespacecontroller_1_1views_a155af175864fbdf91a8f42e7c7683790}} 
+\index{controller\+::views@{controller\+::views}!move@{move}}
+\index{move@{move}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily def controller.\+views.\+move (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name,  }\item[{}]{position }\end{DoxyParamCaption})}
+
+
+
+this is how we move a shutter 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}\label{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}} 
+\index{controller\+::views@{controller\+::views}!position@{position}}
+\index{position@{position}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{position()}{position()}}
+{\footnotesize\ttfamily def controller.\+views.\+position (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+this returns the position of the shutter 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_af29cad87aefb06dec847a90fbb68bc9b}\label{namespacecontroller_1_1views_af29cad87aefb06dec847a90fbb68bc9b}} 
+\index{controller\+::views@{controller\+::views}!remove\+\_\+device@{remove\+\_\+device}}
+\index{remove\+\_\+device@{remove\+\_\+device}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{remove\+\_\+device()}{remove\_device()}}
+{\footnotesize\ttfamily def controller.\+views.\+remove\+\_\+device (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{name }\end{DoxyParamCaption})}
+
+
+
+this functions takes out devices that are in the our list 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a10f36bbe2d1b2e394124a6ea11d3c014}\label{namespacecontroller_1_1views_a10f36bbe2d1b2e394124a6ea11d3c014}} 
+\index{controller\+::views@{controller\+::views}!remove\+\_\+from\+\_\+room@{remove\+\_\+from\+\_\+room}}
+\index{remove\+\_\+from\+\_\+room@{remove\+\_\+from\+\_\+room}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{remove\+\_\+from\+\_\+room()}{remove\_from\_room()}}
+{\footnotesize\ttfamily def controller.\+views.\+remove\+\_\+from\+\_\+room (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{room,  }\item[{}]{shutter }\end{DoxyParamCaption})}
+
+
+
+remove a shutter from the room 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_acddd9a99bf531dce5e43cd6512995c32}\label{namespacecontroller_1_1views_acddd9a99bf531dce5e43cd6512995c32}} 
+\index{controller\+::views@{controller\+::views}!rename\+\_\+device@{rename\+\_\+device}}
+\index{rename\+\_\+device@{rename\+\_\+device}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{rename\+\_\+device()}{rename\_device()}}
+{\footnotesize\ttfamily def controller.\+views.\+rename\+\_\+device (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{old\+\_\+name,  }\item[{}]{new\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+this function renames devices 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a1b7d046b2086952f35b54e84fbce9b05}\label{namespacecontroller_1_1views_a1b7d046b2086952f35b54e84fbce9b05}} 
+\index{controller\+::views@{controller\+::views}!rename\+\_\+room@{rename\+\_\+room}}
+\index{rename\+\_\+room@{rename\+\_\+room}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{rename\+\_\+room()}{rename\_room()}}
+{\footnotesize\ttfamily def controller.\+views.\+rename\+\_\+room (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{old\+\_\+room,  }\item[{}]{new\+\_\+room }\end{DoxyParamCaption})}
+
+
+
+rename a room 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_ad3c247241bafffa26cf97fab00440668}\label{namespacecontroller_1_1views_ad3c247241bafffa26cf97fab00440668}} 
+\index{controller\+::views@{controller\+::views}!scan@{scan}}
+\index{scan@{scan}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{scan()}{scan()}}
+{\footnotesize\ttfamily def controller.\+views.\+scan (\begin{DoxyParamCaption}\item[{}]{request }\end{DoxyParamCaption})}
+
+
+
+this function scans all available devices on the network 
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_aeb01ffa1920fe22255534bb5d3b20648}\label{namespacecontroller_1_1views_aeb01ffa1920fe22255534bb5d3b20648}} 
+\index{controller\+::views@{controller\+::views}!schedule@{schedule}}
+\index{schedule@{schedule}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{schedule()}{schedule()}}
+{\footnotesize\ttfamily def controller.\+views.\+schedule (\begin{DoxyParamCaption}\item[{}]{request,  }\item[{}]{group,  }\item[{}]{position,  }\item[{}]{minutes,  }\item[{}]{hour,  }\item[{}]{day\+\_\+of\+\_\+week,  }\item[{}]{D\+OM,  }\item[{}]{month }\end{DoxyParamCaption})}
+
+
+
+this is the schedule function but it was never tested not enough time to integrate controller of shutter or group,hour,day of week (sunday(0,7)-\/saturday(6) of month) 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecontroller_1_1views_af9e2f21b0adee926bb6d31dc3d5b401d}\label{namespacecontroller_1_1views_af9e2f21b0adee926bb6d31dc3d5b401d}} 
+\index{controller\+::views@{controller\+::views}!known\+\_\+devices@{known\+\_\+devices}}
+\index{known\+\_\+devices@{known\+\_\+devices}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{known\+\_\+devices}{known\_devices}}
+{\footnotesize\ttfamily def controller.\+views.\+known\+\_\+devices = \hyperlink{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}{load\+\_\+cached\+\_\+devices}()}
+
+\mbox{\Hypertarget{namespacecontroller_1_1views_a05586480fa7fea962dd67235dc66527f}\label{namespacecontroller_1_1views_a05586480fa7fea962dd67235dc66527f}} 
+\index{controller\+::views@{controller\+::views}!rooms@{rooms}}
+\index{rooms@{rooms}!controller\+::views@{controller\+::views}}
+\subsubsection{\texorpdfstring{rooms}{rooms}}
+{\footnotesize\ttfamily def controller.\+views.\+rooms = \hyperlink{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}{load\+\_\+rooms}()}
+

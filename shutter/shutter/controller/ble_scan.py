@@ -1,3 +1,4 @@
+###@package ble_scan.py
 # bluetooth low energy scan
 # Uses Bluez for Linux
 #
@@ -5,16 +6,10 @@
 # https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=193923#p1232385
 # https://www.raspberrypi.org/forums/viewtopic.php?t=197152
 #
-#
-#
-# target MAC Address: 30:AE:A4:25:14:56
-# Need to use gattool BLE to connect
-# sudo gatttool -b 30:AE:A4:25:14:56 -I
-# char-write-req 0x002a RED
 
 import bluepy.btle as btle
 import time
-
+### this class is how we can move the shutter
 class MyDelegate(btle.DefaultDelegate):
     
     device = btle.Peripheral()
@@ -22,14 +17,14 @@ class MyDelegate(btle.DefaultDelegate):
     
     def __init__(self):
         btle.DefaultDelegate.__init__(self)
-        
+    ### recieves notifications from the motor and sends it to the app    
     def handleNotification(self,cHandle,data):
         self.list_to_return.append(data)
-        
+    ### how the hub connects to the motor    
     def connect(self,mac_address):
         self.device.connect(mac_address)
         self.device.setDelegate(MyDelegate())
-    
+    ### prints out all the characteristics of the motor
     def discover_services_and_characteristics(self):
         services = self.device.getServices()
         print("Services discovered: ")
@@ -41,10 +36,11 @@ class MyDelegate(btle.DefaultDelegate):
             print("UUID: " + str(characteristics_single.uuid))
         print("UUID for writing characteristic is:" + str(characteristics[4].uuid))
         return characteristics,services
+### this function sends the commands to the motor
     def send_command(self,position):
         characteristics,services = self.discover_services_and_characteristics()
         characteristics[5].write(bytes(position,"utf-8"))
-    
+    ### checks if there are notifications from the motor
     def check_notifications(self):
         if self.device.waitForNotifications(1.0):
             print("Notification")
@@ -54,15 +50,9 @@ class MyDelegate(btle.DefaultDelegate):
                     continue
             finally:
                 return self.list_to_return
-    
+### disconnects the class from the motor    
     def disconnect(self):
         print("Disconnecting ...")
         self.device.disconnect()
         print("Disconnected")
-        
-"""
-while True:
-    if device.waitForNotifications(1.0):
-        print("Notification")
-        continue
-"""
+

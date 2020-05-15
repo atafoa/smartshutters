@@ -1,3 +1,5 @@
+###@package scan_devices scan devices this file scans all the bluetooth devices in the area and writes them to a file for the function to read
+
 from bluetool import Bluetooth
 
 import json

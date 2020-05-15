@@ -7,7 +7,7 @@ import time
 from . import ble_scan
 import csv
 
-
+### this function loads all the known shutters from a csv file that is in the scripts folder not a url
 
 def load_cached_devices():
 	thing={}
@@ -20,6 +20,7 @@ def load_cached_devices():
 
 known_devices = load_cached_devices()
 
+###This function loads all the rooms(groups) from a json file into the rooms dictionary does not have a url
 def load_rooms():
 	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","r")
 	thing = json.load(fp)
@@ -27,7 +28,7 @@ def load_rooms():
 	return thing
 
 rooms = load_rooms()
-
+### Add everyrthing from the known_devices to the csv file incase the system shuts down
 def add_to_file():
     csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w').close()
     csv_fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv", mode='w')
@@ -38,7 +39,7 @@ def add_to_file():
     	print(name,mac_address)
     	writer.writerow({'name':name,'mac':mac_address})
 
-
+### Add rooms to the json file when rooms are either added or removed and the shutters inside the room
 def add_room_to_file():
 	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","w").close()
 	fp = open("/home/pi/hub-repository/shutter/shutter/controller/scripts/rooms.json","w")
@@ -46,15 +47,8 @@ def add_room_to_file():
 	fp.close()
 
 
-#
-#
-#
-#
-#
-#
-#
-#
-# this returns the position of the shutter
+
+### this returns the position of the shutter
 def position(request, name):
 	if check(name) ==1:
 		return HttpResponse(json.dumps("this is not a known shutter"))
@@ -78,7 +72,7 @@ def position(request, name):
 	return response
 
 
-#this returns the list of known devices on the system
+###this returns the list of known devices on the system
 def devices(request):
 	L = []
 	d = {}
@@ -88,16 +82,13 @@ def devices(request):
 		L.append(dict(d))
 		print(L)
 		print("\n")
-
-	#t = open("/home/pi/Desktop/hub-repository/shutter/shutter/controller/scripts/knowndevs.csv","r+")
-	#tt = t.read()
 	response = HttpResponse(json.dumps(L))
 	return response
 
 
 
 
-# this function scans all available devices on the network
+### this function scans all available devices on the network
 def scan(request):
 	os.system("python /home/pi/hub-repository/shutter/shutter/controller/scripts/scan_devices.py")
 	f = open('/home/pi/hub-repository/shutter/shutter/controller/scripts/scan_results.json', 'r')
@@ -108,7 +99,7 @@ def scan(request):
 	
 	
 	
-# this function adds devices to our list
+### this function adds devices to our list
 def add_device(request, name, mac_address):
 	if check(name) == 0:
 		return HttpResponse(json.dumps("Name taken"))
@@ -127,7 +118,7 @@ def add_device(request, name, mac_address):
 
 
 
-# this functions takes out devices that are in the our list
+### this functions takes out devices that are in the our list
 def remove_device(request, name):
 	if check(name) == 1:
 		return HttpResponse("Not in list")
@@ -144,7 +135,7 @@ def remove_device(request, name):
 	return response
 
 
-#this function renames devices
+###this function renames devices
 def rename_device(request, old_name, new_name):
 	if check(new_name) == 0:
 		return HttpResponse("name taken")
@@ -164,7 +155,7 @@ def rename_device(request, old_name, new_name):
 	return response
 	
 	
-#this function will add devices to a group
+###this function will add devices to a group
 def create_room(request, name):
 	empty = {}
 	if name in rooms:
@@ -173,7 +164,7 @@ def create_room(request, name):
 	add_room_to_file()
 	return HttpResponse(json.dumps("added "+name+" room"))
 	
-#list all the rooms and their shutters
+###list all the rooms and their shutters
 def list_rooms(request):
 	d = {}
 	l = []
@@ -186,7 +177,7 @@ def list_rooms(request):
 	return HttpResponse(json.dumps(l))
 
 
-#list only the rooms
+###list only the rooms
 def list_rooms_only(request):
 	d = {}
 	l = []
@@ -196,7 +187,7 @@ def list_rooms_only(request):
 	return HttpResponse(json.dumps(l))
 
 
-#list a specific room's shutters
+###list a specific room's shutters
 def list_room_shutters(request, room):
 	d = {}
 	l = []
@@ -207,7 +198,7 @@ def list_room_shutters(request, room):
 	return HttpResponse(json.dumps(l))
 
 
-#delete a room
+###delete a room
 def delete_room(request,room):
 	if room not in rooms:
 		return HttpResponse("not a room")
@@ -215,7 +206,7 @@ def delete_room(request,room):
 	return HttpResponse(json.dumps("removed "+room))
 
 
-#rename a room
+###rename a room
 def rename_room(request,old_room,new_room):
 	if old_room not in rooms:
 		return HttpResponse("Not a room")
@@ -226,7 +217,7 @@ def rename_room(request,old_room,new_room):
 	return HttpResponse(json.dumps("Success fully renamed room"))
 
 
-#add a shutter to a room
+###add a shutter to a room
 def add_to_room(request,room,shutter):
 	if shutter not in known_devices:
 		return HttpResponse(json.dumps("You have to add the shutter first"))
@@ -238,7 +229,7 @@ def add_to_room(request,room,shutter):
 	add_room_to_file()
 	return HttpResponse(json.dumps("Added "+shutter+" to room "+room))
 	
-#remove a shutter from the room
+###remove a shutter from the room
 def remove_from_room(request,room,shutter):
 	if shutter not in known_devices:
 		return HttpResponse(json.dumps("Unknown shutter"))
@@ -250,7 +241,7 @@ def remove_from_room(request,room,shutter):
 	add_room_to_file()
 	return HttpResponse(json.dumps("Device was successfully deleted"))
 
-#this is how we move a shutter
+###this is how we move a shutter
 def move (request,name,position):
 	if check(name) == 1:
 		return HttpResponse(json.dumps("this is not a known device"))
@@ -258,7 +249,7 @@ def move (request,name,position):
 		return HttpResponse(json.dumps("too high"))
 	if position <= 0:
 		return HttpResponse(json.dumps("negative"))
-	#time.sleep(0.5)
+	
 	list_to_return = []
 	pp = str(position)
 	num_variables_to_notify = 2
@@ -267,7 +258,6 @@ def move (request,name,position):
 	print(known_devices[name])
 	while flag == False:		
 		try:
-			#ble_scan_object.connect("30:AE:A4:25:14:56")
 			ble_scan_object.connect(known_devices[name]) 
 			ble_scan_object.send_command(pp)
 			list_to_return = list(ble_scan_object.check_notifications())
@@ -282,20 +272,8 @@ def move (request,name,position):
 			return HttpResponse(json.dumps(tt.format(position)))
 
 
-	'''
-	for the raspberry pi 0W we should have this not print an error message but keep looping until it can do it so just make a test file and try it out in there
-	'''
-######################################
-#
-#
-#
-#	BATTERY FUNCTION
-#
-#
-######################################
 
-
-#this function is used ti check the level of the battery
+###this function is used to check the level of the battery
 def battery(request,name):
 	if check(name) == 1:
 		return HttpResponse(json.dumps("Not a known device"))
@@ -319,7 +297,7 @@ def battery(request,name):
 	
 
 	
-
+###this is the schedule function but it was never tested not enough time to integrate
 #controller\devices\schedule\name of shutter or group\position\min,hour,day of week (sunday(0,7)-saturday(6)\day of month\month)
 def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):
 	
@@ -362,13 +340,11 @@ def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):
 		return HttpResponse(json.dumps("incorrect month"))
 	
 	if group  in known_devices:
-		#oof = "python /home/pi/hub-repository/shutter/shutter/controller/scripts/set_time.py "+known_devices[group]+" "+position
 		os.system(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position))
 		return HttpResponse(json.dumps(oof.format(send_min, send_hr,send_day,send_dom,send_month,known_devices[group],position)))
 		
 	#we have to do it for the group now so if they send a room
 	#then we have to set the schedule for each shutter therefore an os command for each shutter 
-	#idk if we can send alot within a few seconds
 	elif group in rooms:
 		
 		return HttpResponse(json.dumps(oof.format(send_min, send_hr,send_day,send_dom,send_month,rooms[group],position)))
@@ -381,13 +357,13 @@ def schedule(request,group,position,minutes,hour,day_of_week,DOM,month):
 
 
 
-
+##to check if the shutter is already known
 def check(name):
 	if name in known_devices:
 		return 0
 	else:
 		return 1
-
+### to check if the mac address is already known
 def check_mac(mac):
 	for x in known_devices.values():
 		if x == mac:

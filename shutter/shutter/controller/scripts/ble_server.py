@@ -1,3 +1,6 @@
+###this is how we would set up the password by connecting to the app
+# over bluetooth to set up the wifi, but it was not implemented 
+
 '''
 from bluetooth import *
 
@@ -18,6 +21,9 @@ DO THIS FIRST sudo hciconfig hci0 piscan
 '''
 import sys
 from bluetooth import *
+###@package ble_server
+###this is how we would set up the password by connecting to the app
+# over bluetooth to set up the wifi, but it was not implemented 
 
 
 server_sock=BluetoothSocket( RFCOMM )

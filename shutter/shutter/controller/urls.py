@@ -1,6 +1,11 @@
 from django.urls import path
-
 from . import views
+
+###
+#@date 5-15-2020
+#@section intro_sec Urls.py
+#In this file you can add urls of the api functions
+
 
 urlpatterns = [
     path('<str:name>/position', views.position),

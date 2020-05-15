@@ -1,0 +1,96 @@
+\hypertarget{namespaceset__time}{}\section{set\+\_\+time Namespace Reference}
+\label{namespaceset__time}\index{set\+\_\+time@{set\+\_\+time}}
+
+
+this file recieves the time for the schedule and sets the time using cronjobs  
+
+
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceset__time_aac07b96e110bddcafecbb0249a2b1b22}{minute} = sys.\+argv\mbox{[}1\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a9b9cd4838ca6ba8e8653b93ec5bf1ccd}{hour} = sys.\+argv\mbox{[}2\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a0d28e53eeaf0bdbab2f1719272f31912}{day\+\_\+of\+\_\+week} = sys.\+argv\mbox{[}3\mbox{]}
+\item 
+\hyperlink{namespaceset__time_aa07c97b77846215f6e507c5c01c9c340}{D\+OM} = sys.\+argv\mbox{[}4\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a1985921767360034acf361d528c1ed40}{month} = sys.\+argv\mbox{[}5\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a7d323bbf3d79eac87d5851d0b1389561}{mac} = sys.\+argv\mbox{[}6\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a0c50bf42014a5648a86abdcee8bf1069}{position} = sys.\+argv\mbox{[}7\mbox{]}
+\item 
+\hyperlink{namespaceset__time_a5ff4dfadfd2f8d3122de7fbb7315f4cf}{cron} = Cron\+Tab(user=\textquotesingle{}pi\textquotesingle{})
+\item 
+string \hyperlink{namespaceset__time_af2ed09847fd976695336fbf8bbfcfd56}{oof} = \textquotesingle{}python /home/pi/hub-\/repository/shutter/shutter/controller/scripts/task.\+py \textquotesingle{}+\hyperlink{namespaceset__time_a7d323bbf3d79eac87d5851d0b1389561}{mac}+\textquotesingle{} \textquotesingle{}+\hyperlink{namespaceset__time_a0c50bf42014a5648a86abdcee8bf1069}{position}
+\item 
+\hyperlink{namespaceset__time_a426ad1636cada91a1e8d7afad962d791}{job} = cron.\+new(command = \hyperlink{namespaceset__time_af2ed09847fd976695336fbf8bbfcfd56}{oof} )
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+this file recieves the time for the schedule and sets the time using cronjobs 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceset__time_a5ff4dfadfd2f8d3122de7fbb7315f4cf}\label{namespaceset__time_a5ff4dfadfd2f8d3122de7fbb7315f4cf}} 
+\index{set\+\_\+time@{set\+\_\+time}!cron@{cron}}
+\index{cron@{cron}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{cron}{cron}}
+{\footnotesize\ttfamily set\+\_\+time.\+cron = Cron\+Tab(user=\textquotesingle{}pi\textquotesingle{})}
+
+\mbox{\Hypertarget{namespaceset__time_a0d28e53eeaf0bdbab2f1719272f31912}\label{namespaceset__time_a0d28e53eeaf0bdbab2f1719272f31912}} 
+\index{set\+\_\+time@{set\+\_\+time}!day\+\_\+of\+\_\+week@{day\+\_\+of\+\_\+week}}
+\index{day\+\_\+of\+\_\+week@{day\+\_\+of\+\_\+week}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{day\+\_\+of\+\_\+week}{day\_of\_week}}
+{\footnotesize\ttfamily set\+\_\+time.\+day\+\_\+of\+\_\+week = sys.\+argv\mbox{[}3\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_aa07c97b77846215f6e507c5c01c9c340}\label{namespaceset__time_aa07c97b77846215f6e507c5c01c9c340}} 
+\index{set\+\_\+time@{set\+\_\+time}!D\+OM@{D\+OM}}
+\index{D\+OM@{D\+OM}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{D\+OM}{DOM}}
+{\footnotesize\ttfamily set\+\_\+time.\+D\+OM = sys.\+argv\mbox{[}4\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_a9b9cd4838ca6ba8e8653b93ec5bf1ccd}\label{namespaceset__time_a9b9cd4838ca6ba8e8653b93ec5bf1ccd}} 
+\index{set\+\_\+time@{set\+\_\+time}!hour@{hour}}
+\index{hour@{hour}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{hour}{hour}}
+{\footnotesize\ttfamily set\+\_\+time.\+hour = sys.\+argv\mbox{[}2\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_a426ad1636cada91a1e8d7afad962d791}\label{namespaceset__time_a426ad1636cada91a1e8d7afad962d791}} 
+\index{set\+\_\+time@{set\+\_\+time}!job@{job}}
+\index{job@{job}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{job}{job}}
+{\footnotesize\ttfamily set\+\_\+time.\+job = cron.\+new(command = \hyperlink{namespaceset__time_af2ed09847fd976695336fbf8bbfcfd56}{oof} )}
+
+\mbox{\Hypertarget{namespaceset__time_a7d323bbf3d79eac87d5851d0b1389561}\label{namespaceset__time_a7d323bbf3d79eac87d5851d0b1389561}} 
+\index{set\+\_\+time@{set\+\_\+time}!mac@{mac}}
+\index{mac@{mac}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{mac}{mac}}
+{\footnotesize\ttfamily set\+\_\+time.\+mac = sys.\+argv\mbox{[}6\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_aac07b96e110bddcafecbb0249a2b1b22}\label{namespaceset__time_aac07b96e110bddcafecbb0249a2b1b22}} 
+\index{set\+\_\+time@{set\+\_\+time}!minute@{minute}}
+\index{minute@{minute}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{minute}{minute}}
+{\footnotesize\ttfamily set\+\_\+time.\+minute = sys.\+argv\mbox{[}1\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_a1985921767360034acf361d528c1ed40}\label{namespaceset__time_a1985921767360034acf361d528c1ed40}} 
+\index{set\+\_\+time@{set\+\_\+time}!month@{month}}
+\index{month@{month}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{month}{month}}
+{\footnotesize\ttfamily set\+\_\+time.\+month = sys.\+argv\mbox{[}5\mbox{]}}
+
+\mbox{\Hypertarget{namespaceset__time_af2ed09847fd976695336fbf8bbfcfd56}\label{namespaceset__time_af2ed09847fd976695336fbf8bbfcfd56}} 
+\index{set\+\_\+time@{set\+\_\+time}!oof@{oof}}
+\index{oof@{oof}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{oof}{oof}}
+{\footnotesize\ttfamily string set\+\_\+time.\+oof = \textquotesingle{}python /home/pi/hub-\/repository/shutter/shutter/controller/scripts/task.\+py \textquotesingle{}+\hyperlink{namespaceset__time_a7d323bbf3d79eac87d5851d0b1389561}{mac}+\textquotesingle{} \textquotesingle{}+\hyperlink{namespaceset__time_a0c50bf42014a5648a86abdcee8bf1069}{position}}
+
+\mbox{\Hypertarget{namespaceset__time_a0c50bf42014a5648a86abdcee8bf1069}\label{namespaceset__time_a0c50bf42014a5648a86abdcee8bf1069}} 
+\index{set\+\_\+time@{set\+\_\+time}!position@{position}}
+\index{position@{position}!set\+\_\+time@{set\+\_\+time}}
+\subsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily set\+\_\+time.\+position = sys.\+argv\mbox{[}7\mbox{]}}
+

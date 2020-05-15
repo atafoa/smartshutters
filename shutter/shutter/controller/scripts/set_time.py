@@ -1,3 +1,5 @@
+###@package set_time
+#this file recieves the time for the schedule and sets the time using cronjobs
 from crontab import CronTab
 import sys
 
@@ -15,11 +17,11 @@ position = sys.argv[7]
 cron = CronTab(user='pi')
 
 oof = 'python /home/pi/hub-repository/shutter/shutter/controller/scripts/task.py '+mac+' '+position
-#print(oof)
+
 
 job = cron.new(command = oof )
 
-#job = cron.new(command='echo hello_world')
+
 job.enable()
 cron.write()
 '''

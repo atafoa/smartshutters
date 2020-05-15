@@ -1,3 +1,7 @@
+###@package task
+#this program moves the shutter
+#supposed to be used by the cron job set by the
+# set_times.py file but this was never tested and integrated with the app
 import sys
 import bluepy.btle as btle
 

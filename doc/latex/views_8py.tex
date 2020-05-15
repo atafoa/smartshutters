@@ -1,0 +1,63 @@
+\hypertarget{views_8py}{}\section{/home/pi/hub-\/repository/shutter/shutter/controller/views.py File Reference}
+\label{views_8py}\index{/home/pi/hub-\/repository/shutter/shutter/controller/views.\+py@{/home/pi/hub-\/repository/shutter/shutter/controller/views.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacecontroller_1_1views}{controller.\+views}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecontroller_1_1views_a981a57611ae7537ed58369b7d4476a65}{controller.\+views.\+load\+\_\+cached\+\_\+devices} ()
+\begin{DoxyCompactList}\small\item\em this function loads all the known shutters from a csv file that is in the scripts folder not a url \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a7d95618cd1b42c41c244c565d20fed55}{controller.\+views.\+load\+\_\+rooms} ()
+\begin{DoxyCompactList}\small\item\em This function loads all the rooms(groups) from a json file into the rooms dictionary does not have a url. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a26ce91aeba8c9d300306419ee86b812e}{controller.\+views.\+add\+\_\+to\+\_\+file} ()
+\begin{DoxyCompactList}\small\item\em Add everyrthing from the known\+\_\+devices to the csv file incase the system shuts down. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ab9bc1ef91482004a9fd83274f0d24fc0}{controller.\+views.\+add\+\_\+room\+\_\+to\+\_\+file} ()
+\begin{DoxyCompactList}\small\item\em Add rooms to the json file when rooms are either added or removed and the shutters inside the room. \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_af4a1b79435d815cad6aa25c3c45aa080}{controller.\+views.\+position} (request, name)
+\begin{DoxyCompactList}\small\item\em this returns the position of the shutter \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a2d4dd7e1f8ecc0560922209253920718}{controller.\+views.\+devices} (request)
+\begin{DoxyCompactList}\small\item\em this returns the list of known devices on the system \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ad3c247241bafffa26cf97fab00440668}{controller.\+views.\+scan} (request)
+\begin{DoxyCompactList}\small\item\em this function scans all available devices on the network \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_aff74e13b196d5984c8d2d6185c7b2a52}{controller.\+views.\+add\+\_\+device} (request, name, mac\+\_\+address)
+\begin{DoxyCompactList}\small\item\em this function adds devices to our list \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_af29cad87aefb06dec847a90fbb68bc9b}{controller.\+views.\+remove\+\_\+device} (request, name)
+\begin{DoxyCompactList}\small\item\em this functions takes out devices that are in the our list \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_acddd9a99bf531dce5e43cd6512995c32}{controller.\+views.\+rename\+\_\+device} (request, old\+\_\+name, new\+\_\+name)
+\begin{DoxyCompactList}\small\item\em this function renames devices \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a0a946610cad4aa4fc8684e3f1b16d831}{controller.\+views.\+create\+\_\+room} (request, name)
+\begin{DoxyCompactList}\small\item\em this function will add devices to a group \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a8d219ce23dd0c7ffc9bd11f6be1122a5}{controller.\+views.\+list\+\_\+rooms} (request)
+\begin{DoxyCompactList}\small\item\em list all the rooms and their shutters \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a60eebf620def5afc7e35004a4f34b073}{controller.\+views.\+list\+\_\+rooms\+\_\+only} (request)
+\begin{DoxyCompactList}\small\item\em list only the rooms \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a552bb38779c88d2fd98d5116a7ee952e}{controller.\+views.\+list\+\_\+room\+\_\+shutters} (request, room)
+\begin{DoxyCompactList}\small\item\em list a specific room\textquotesingle{}s shutters \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a82f0cdbd29a35096496d79b7915ac89e}{controller.\+views.\+delete\+\_\+room} (request, room)
+\begin{DoxyCompactList}\small\item\em delete a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a1b7d046b2086952f35b54e84fbce9b05}{controller.\+views.\+rename\+\_\+room} (request, old\+\_\+room, new\+\_\+room)
+\begin{DoxyCompactList}\small\item\em rename a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a4e7163f7f3a8bb5c7600ffd72e0fa6d1}{controller.\+views.\+add\+\_\+to\+\_\+room} (request, room, shutter)
+\begin{DoxyCompactList}\small\item\em add a shutter to a room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a10f36bbe2d1b2e394124a6ea11d3c014}{controller.\+views.\+remove\+\_\+from\+\_\+room} (request, room, shutter)
+\begin{DoxyCompactList}\small\item\em remove a shutter from the room \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a155af175864fbdf91a8f42e7c7683790}{controller.\+views.\+move} (request, name, position)
+\begin{DoxyCompactList}\small\item\em this is how we move a shutter \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a81a56f3af5249f251206b7c898f5e99c}{controller.\+views.\+battery} (request, name)
+\begin{DoxyCompactList}\small\item\em this function is used to check the level of the battery \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_aeb01ffa1920fe22255534bb5d3b20648}{controller.\+views.\+schedule} (request, group, position, minutes, hour, day\+\_\+of\+\_\+week, D\+OM, month)
+\begin{DoxyCompactList}\small\item\em this is the schedule function but it was never tested not enough time to integrate controller of shutter or group,hour,day of week (sunday(0,7)-\/saturday(6) of month) \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_a6a41caa9cb6c4b959968a86d3c899db2}{controller.\+views.\+check} (name)
+\begin{DoxyCompactList}\small\item\em to check if the shutter is already known \end{DoxyCompactList}\item 
+def \hyperlink{namespacecontroller_1_1views_ac98b114197f615cf64579478f0af28c0}{controller.\+views.\+check\+\_\+mac} (mac)
+\begin{DoxyCompactList}\small\item\em to check if the mac address is already known \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacecontroller_1_1views_af9e2f21b0adee926bb6d31dc3d5b401d}{controller.\+views.\+known\+\_\+devices} = load\+\_\+cached\+\_\+devices()
+\item 
+def \hyperlink{namespacecontroller_1_1views_a05586480fa7fea962dd67235dc66527f}{controller.\+views.\+rooms} = load\+\_\+rooms()
+\end{DoxyCompactItemize}

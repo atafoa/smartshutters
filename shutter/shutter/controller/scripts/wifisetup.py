@@ -1,3 +1,6 @@
+###@package wifisetup
+# how we set the wifi password after getting the wifi credentials from the ble_server.py file
+#@bug this was never integrated with the app
 import sys
 from wifi import Scheme,Cell
 

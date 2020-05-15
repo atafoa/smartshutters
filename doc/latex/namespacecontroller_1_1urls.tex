@@ -1,0 +1,44 @@
+\hypertarget{namespacecontroller_1_1urls}{}\section{controller.\+urls Namespace Reference}
+\label{namespacecontroller_1_1urls}\index{controller.\+urls@{controller.\+urls}}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{namespacecontroller_1_1urls_acba3e26d9aeb475059be4fd949a1a2eb}{urlpatterns}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecontroller_1_1urls_acba3e26d9aeb475059be4fd949a1a2eb}\label{namespacecontroller_1_1urls_acba3e26d9aeb475059be4fd949a1a2eb}} 
+\index{controller\+::urls@{controller\+::urls}!urlpatterns@{urlpatterns}}
+\index{urlpatterns@{urlpatterns}!controller\+::urls@{controller\+::urls}}
+\subsubsection{\texorpdfstring{urlpatterns}{urlpatterns}}
+{\footnotesize\ttfamily list controller.\+urls.\+urlpatterns}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 =  [
+2     path(\textcolor{stringliteral}{'<str:name>/position'}, views.position),
+3     path(\textcolor{stringliteral}{'devices'}, views.devices),
+4     path(\textcolor{stringliteral}{'devices/scan'}, views.scan),
+5     path(\textcolor{stringliteral}{'devices/add/<str:name>/<str:mac\_address>'}, views.add\_device),
+6     path(\textcolor{stringliteral}{'devices/remove/<str:name>'}, views.remove\_device),
+7     path(\textcolor{stringliteral}{'devices/rename/<str:old\_name>/<str:new\_name>'}, views.rename\_device),
+8     path(\textcolor{stringliteral}{'devices/create\_group/<str:name>'},views.create\_room),
+9     path(\textcolor{stringliteral}{'devices/list\_rooms/'},views.list\_rooms),
+10     path(\textcolor{stringliteral}{'devices/list\_rooms\_only/'},views.list\_rooms\_only),
+11     path(\textcolor{stringliteral}{'devices/list\_rooms\_shutters/<str:room>'},views.list\_room\_shutters),
+12     path(\textcolor{stringliteral}{'devices/add\_to\_room/<str:room>/<str:shutter>'},views.add\_to\_room),
+13     path(\textcolor{stringliteral}{'devices/remove\_room/<str:room>'},views.delete\_room),
+14     path(\textcolor{stringliteral}{'devices/rename\_room/<str:old\_room>/<str:new\_room>'},views.rename\_room),
+15     path(\textcolor{stringliteral}{'devices/remove\_from\_room/<str:room>/<str:shutter>'},views.remove\_from\_room),
+16     path(\textcolor{stringliteral}{'
+      devices/schedule/<str:group>/<str:position>/<int:minutes>/<int:hour>/<int:day\_of\_week>/<int:DOM>/<int:month>'},views.schedule),
+17     path(\textcolor{stringliteral}{'<str:name>/move/<int:position>'}, views.move),
+18     path(\textcolor{stringliteral}{'Battery/<str:name>'},views.battery),
+19 ]
+\end{DoxyCode}
+\begin{DoxyDate}{Date}
+5-\/15-\/2020 
+\end{DoxyDate}
+\hypertarget{namespacecontroller_1_1urls_intro_sec}{}\subsection{Urls.\+py}\label{namespacecontroller_1_1urls_intro_sec}
+In this file you can add urls of the api functions 
